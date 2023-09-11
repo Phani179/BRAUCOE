@@ -1,15 +1,15 @@
 import "package:flutter/material.dart";
 import 'Screen2.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget
+class Screen1 extends StatelessWidget
 {
-  const MyApp({super.key});
+  const Screen1({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "University-BRAU",
+      title:
+
+      "University-BRAU",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -46,10 +46,10 @@ class HomePage extends StatelessWidget
           child: Center(child: Image.asset('assets/images/HomePageLogo.png')),
         ),
         // Text
-        Center(
+        const Center(
           child:  Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const<Widget>
+              children: <Widget>
               [
                 SizedBox(height:230),    // 230
                 Center(

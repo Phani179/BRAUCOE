@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled/API/LoginAPI.dart';
+import 'package:untitled/API/MailAPI.dart';
+import 'package:untitled/API/MailSender.dart';
+import 'package:untitled/Screens/MailSendingPage.dart';
+import 'HomePage.dart';
 import 'MessageTextField.dart';
 import 'SubjectTextField.dart';
 
@@ -23,37 +28,7 @@ class _Help extends State<StatefulWidget>
                 children: [
                   Positioned(
                     right: 0,
-                    child: Image.asset("assets/images/Ellipse11.png"),
-                  ),
-                  Positioned(
-                    top: 45,
-                    right: 127,
-                    child: Image.asset("assets/images/Ellipse13.png"),
-                  ),
-                  Positioned(
-                    top: 55,
-                    right: 130,
-                    child: Image.asset("assets/images/Ellipse12.png"),
-                  ),
-                  Positioned(
-                    top: 66,
-                    right: 118,
-                    child: Image.asset("assets/images/Ellipse14.png"),
-                  ),
-                  Positioned(
-                    top: 60,
-                    right: 15,
-                      child: Image.asset("assets/images/Books.png"),
-                  ),
-                  Positioned(
-                    top: 164,
-                    right: 40,
-                    child: Image.asset("assets/images/Ellipse16.png"),
-                  ),
-                  Positioned(
-                    top: 156,
-                    right: 30,
-                    child: Image.asset("assets/images/Ellipse15.png"),
+                    child: Image.asset("assets/images/HelpPageImage.png"),
                   ),
                   const Positioned(
                     left: 20,
@@ -136,34 +111,15 @@ class _Help extends State<StatefulWidget>
                         ),
                         child: Text("Submit"),
                         onPressed: () {
+                          String subject = SubjectTextField.textController.text;
+                          String message = MessageTextField.textController.text;
+                          SubjectTextField.textController.clear();
+                          MessageTextField.textController.clear();
                           showDialog(
                               context: context,
-                              builder: (context){
-                                return AlertDialog(
-                                  content : Container(
-                                    height: 80,
-                                    child: Stack(
-                                       children: [
-                                         Positioned(
-                                           left: 95,
-                                           child: Image.asset("assets/images/Done.png"),
-                                         ),
-                                         const Positioned(
-                                           top: 60,
-                                           left: 18,
-                                           child: Text("Successfully submitted",
-                                             style: TextStyle(
-                                               fontFamily: "LibreFranklin-Regular",
-                                               fontSize: 18,
-                                               fontWeight: FontWeight.w600,
-                                             ),
-                                           ),
-                                         ),
-                                       ],
-                                     )
-                                  ),
-                                );
-                              }
+                              builder: (context) {
+                                return MailSendingPage(subject, message);
+                              },
                           );
                         },
                       ),

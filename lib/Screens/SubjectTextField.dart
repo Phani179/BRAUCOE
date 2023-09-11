@@ -33,6 +33,7 @@ class _SubjectTextField extends State<SubjectTextField>
     focusNode.removeListener(focusChange);
     focusNode.dispose();
     _myFocusNotifier.dispose();
+    super.dispose();
   }
 
   void focusChange()

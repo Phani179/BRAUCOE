@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:untitled/API/LoginAPI.dart';
-import 'package:untitled/API/TableCreation.dart';
+import 'package:untitled/API/LoginTrailAPI.dart';
+import 'package:untitled/Screens/ResultPage.dart';
+import 'package:untitled/Screens/ResultTable.dart';
 
+import '../API/LoginAPI.dart';
 import '../API/ResultAPI.dart';
 import 'CarosuelSliding.dart';
 
@@ -26,77 +28,82 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-
   GlobalKey<ScaffoldState>? scaffoldState = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldState,
       backgroundColor: Color(0xFFEFE1D0),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.greenAccent[30],
+          child: SafeArea(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 15,
                 ),
-                child: const Text('Drawer Header'),
-              ),
-              ListTile(
-                title: const Text('help'),
-                leading: const Icon(Icons.help),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('rate'),
-                leading: const Icon(Icons.star_rate),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('feedback'),
-                leading: const Icon(Icons.feedback),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              Positioned(
-                top: 680,
-                left:75,
-                right: 50,
-                height:40,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: const[
-                      BoxShadow(
-                        color: Color(0x33000000),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset: Offset(4, 6),
-                      )
-                    ],
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      backgroundColor: const Color(0xFF00512D),
+                const Row(
+                  children: [
+                    SizedBox(
+                      width: 13,
                     ),
-                    onPressed: () {},
-                    child: const Text("LOGOUT", style: TextStyle(
-                      fontFamily: "LibreFranklin-Regular",
-                      fontWeight: FontWeight.w400,
+                    Icon(Icons.arrow_back_outlined),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      height: height * 0.15,
+                      width: width * 0.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(70),
+                        color: Colors.grey,
+                      ),
                     )
-                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 5),
+                  child: AutoSizeText(
+                    "${LoginAPI.studentDetails?.student_name}",
+                    style: TextStyle(fontFamily: "LibreFranklin-SemiBold", color: Color(0xFF382E1E)),
+                    minFontSize: 20,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                   ),
                 ),
-              ),
-            ],
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    AutoSizeText(
+                      "${LoginAPI.studentDetails?.studentId}",
+                      style: TextStyle(fontFamily: "LibreFranklin-Medium", fontSize: 20, color: Color(0xFF382E1E)),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      child: Text("View Profile",
+                        style: TextStyle(color: Color(0xFF382E1E),
+                            fontFamily: "LibreFranklin-SemiBold"),),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
         // resizeToAvoidBottomInset: true,
@@ -122,7 +129,7 @@ class _Home extends State<Home> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.06,
                             ),
-                               const Icon(Icons.person, size: 50,),
+                               const Icon(Icons.account_circle_sharp, size: 50,),
                               ],
                         ),
                         onTap: (){
@@ -143,15 +150,16 @@ class _Home extends State<Home> {
                               SizedBox(
                                 width : MediaQuery.of(context).size.width * 0.7,
                                 child: AutoSizeText(
-                                  "${LoginTrailAPI.student[0]["name"]}",
+                                  "${LoginAPI.studentDetails?.student_name}",
+                                  minFontSize: 10,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(fontSize: 18, fontFamily: "LibreFranklin-Regular", fontWeight: FontWeight.w500),
+                                  style: const TextStyle(fontSize: 16, fontFamily: "LibreFranklin-Medium"),
                                 ),
                               ),
                               // Text(, style: TextStyle(fontSize: 18, fontFamily: "LibreFranklin-Regular", fontWeight: FontWeight.w500),),
                             ],
                           ),
-                          Text("${LoginTrailAPI.student[0]["reg_no"]}", style: const TextStyle(fontSize: 18, fontFamily: "LibreFranklin-Regular", fontWeight: FontWeight.w500)),
+                          Text("${LoginAPI.studentDetails?.studentId}", style: const TextStyle(fontSize: 16, fontFamily: "LibreFranklin-Medium")),
                         ],
                       ),
                       Column(
@@ -204,8 +212,8 @@ class _Home extends State<Home> {
                                   const SizedBox(
                                     width: 21,
                                   ),
-                                  Column(
-                                    children: const [
+                                  const Column(
+                                    children: [
                                       SizedBox(
                                         height: 20,
                                       ),
@@ -249,8 +257,8 @@ class _Home extends State<Home> {
                                     const SizedBox(
                                       width: 22,
                                     ),
-                                    Column(
-                                      children: const [
+                                    const Column(
+                                      children: [
                                         SizedBox(
                                           height: 20,
                                         ),
@@ -269,7 +277,7 @@ class _Home extends State<Home> {
                           onTap: (){
                             setState(() {
                               ResultAPI resultsAPI = ResultAPI();
-                              resultsAPI.getResult(LoginTrailAPI.student[0]["reg_no"]);
+                              resultsAPI.getResult("Semester- 1",LoginAPI.studentDetails?.studentId);
                             });
                             Future.delayed(const Duration(seconds: 3), () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const ResultTable()));
@@ -303,9 +311,8 @@ class _Home extends State<Home> {
                                   const SizedBox(
                                     width: 21,
                                   ),
-                                  Column(
-                                    children: const
-                                    [
+                                  const Column(
+                                    children: [
                                       SizedBox(
                                         height: 20,
                                       ),
@@ -431,26 +438,33 @@ class _Home extends State<Home> {
                     height: 70,
                     child: GNav(
                         backgroundColor: Colors.white,
-                        activeColor: Colors.green.shade900,
-                        tabBackgroundColor: Colors.green.shade200,
+                        activeColor: Color(0xff00512D), // Colors.green.shade900,
+                        tabBackgroundColor: Colors.green.shade100,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         gap: 8,
+                        padding: EdgeInsets.symmetric(horizontal: 13,vertical: 8),
                         tabs: const [
                           GButton(
                             icon: Icons.home,
+                            iconSize: 25,
                             text: 'Home',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Regular", fontSize: 20, fontWeight: FontWeight.w600),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textSize: 25,
                           ),
                           GButton(
                             icon: Icons.search,
+                            iconSize: 25,
                             text: 'Search',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Regular", fontSize: 20, fontWeight: FontWeight.w600),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textSize: 25,
                             onPressed: null,
                           ),
                           GButton(
                             icon: Icons.settings,
+                            iconSize: 25,
                             text: 'Settings',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Regular", fontSize: 20, fontWeight: FontWeight.w600),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textSize: 25,
                             onPressed: null,
                           ),
                         ]
