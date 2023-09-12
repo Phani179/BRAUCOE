@@ -19,17 +19,21 @@ class _ResultTable extends State<ResultTable> {
       SafeArea(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 GestureDetector(
-                  child: Icon(Icons.arrow_back_sharp),
-                )
+                  child: const Icon(Icons.arrow_back_sharp),
+                  onTap: ()
+                  {
+                    Navigator.pop(context);
+                  },
+                ),
               ],
             ),
             const SizedBox(

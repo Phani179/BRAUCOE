@@ -34,6 +34,7 @@ class _MessageTextField extends State<MessageTextField>
     focusNode.removeListener(focusChange);
     focusNode.dispose();
     _myFocusNotifier.dispose();
+    super.dispose();
   }
 
   void focusChange()

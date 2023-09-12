@@ -11,7 +11,7 @@ class NormalTextFields extends StatefulWidget
   TextInputType inputType;
   List<TextInputFormatter>? filteringTextInputFromatter;
 
-  NormalTextFields({required this.hintText, required this.prefixIcon, required this.inputType, required this.filteringTextInputFromatter});
+  NormalTextFields({required this.hintText, required this.prefixIcon, required this.inputType, this.filteringTextInputFromatter});
 
   @override
   State<NormalTextFields> createState() => _TextFields();
@@ -33,6 +33,7 @@ class _TextFields extends State<NormalTextFields>
     focusNode.removeListener(focusChange);
     focusNode.dispose();
     _myFocusNotifier.dispose();
+    super.dispose();
   }
 
   void focusChange()
