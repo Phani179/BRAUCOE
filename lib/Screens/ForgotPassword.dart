@@ -21,7 +21,6 @@ class _ForgotPassword extends State<ForgotPassword>
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    NormalTextFields.textController.clear();
   }
   @override
   Widget build(BuildContext context)
@@ -122,7 +121,6 @@ class _ForgotPassword extends State<ForgotPassword>
                           //     return OtpPageRedirect();
                           //   },
                           // );
-                          NormalTextFields.textController.clear();
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage()));
                         },
                         child: const Text('Next',

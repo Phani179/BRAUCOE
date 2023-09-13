@@ -6,13 +6,13 @@ import 'package:untitled/Screens/ForgotPassword.dart';
 import 'Help.dart';
 import 'NormalTextFields.dart';
 
-class Screen3 extends StatefulWidget
+class StudentLogin extends StatefulWidget
 {
   @override
-  State<Screen3> createState() => _Screen3();
+  State<StudentLogin> createState() => _StudentLogin();
 }
 
-class _Screen3 extends State<Screen3>
+class _StudentLogin extends State<StudentLogin>
 {
 
   @override
@@ -27,8 +27,6 @@ class _Screen3 extends State<Screen3>
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    NormalTextFields.textController.clear();
-    PasswordTextField.passwordController.clear();
   }
 
   @override

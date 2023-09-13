@@ -42,6 +42,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_email_sender: ^6.0.1
   flutter_otp_text_field: ^1.1.1
+  shimmer: ^3.0.0
+  image_picker: ^1.0.4
 
 dev_dependencies:
   flutter_test:

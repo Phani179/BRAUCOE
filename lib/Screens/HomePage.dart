@@ -2,12 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:untitled/API/LoginTrailAPI.dart';
+import 'package:untitled/Screens/Help.dart';
 import 'package:untitled/Screens/ResultPage.dart';
 import 'package:untitled/Screens/ResultTable.dart';
 
 import '../API/LoginAPI.dart';
 import '../API/ResultAPI.dart';
 import 'CarosuelSliding.dart';
+import 'StudentLogin.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -35,7 +37,7 @@ class _Home extends State<Home> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       key: scaffoldState,
-      backgroundColor: Color(0xFFEFE1D0),
+      backgroundColor: const Color(0xFFEFE1D0),
         drawer: Drawer(
           child: SafeArea(
             child: Column(
@@ -43,12 +45,18 @@ class _Home extends State<Home> {
                 const SizedBox(
                   height: 15,
                 ),
-                const Row(
+                Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 13,
                     ),
-                    Icon(Icons.arrow_back_outlined),
+                    GestureDetector
+                      (
+                        child: Icon(Icons.arrow_back_outlined),
+                      onTap: (){
+                          scaffoldState?.currentState?.closeDrawer();
+                      },
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -56,7 +64,7 @@ class _Home extends State<Home> {
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Container(
@@ -69,39 +77,182 @@ class _Home extends State<Home> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 5),
-                  child: AutoSizeText(
-                    "${LoginAPI.studentDetails?.student_name}",
-                    style: TextStyle(fontFamily: "LibreFranklin-SemiBold", color: Color(0xFF382E1E)),
-                    minFontSize: 20,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 5),
+                        child: AutoSizeText(
+                          "${LoginAPI.studentDetails?.student_name}",
+                          style: const TextStyle(fontFamily: "LibreFranklin-SemiBold", color: Color(0xFF382E1E)),
+                          minFontSize: 20,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
                       width: 20,
                     ),
                     AutoSizeText(
                       "${LoginAPI.studentDetails?.studentId}",
-                      style: TextStyle(fontFamily: "LibreFranklin-Medium", fontSize: 20, color: Color(0xFF382E1E)),
+                      style: const TextStyle(fontFamily: "LibreFranklin-Medium", fontSize: 20, color: Color(0xFF382E1E)),
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Row(
                   children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
                     GestureDetector(
-                      child: Text("View Profile",
-                        style: TextStyle(color: Color(0xFF382E1E),
-                            fontFamily: "LibreFranklin-SemiBold"),),
+                      child: const Text("View Profile",
+                        style: TextStyle(color: Color(0x99382E1E),
+                            fontFamily: "LibreFranklin-SemiBold",
+                        fontSize: 18,
+                        ),
+                      ),
+                      onTap: ()
+                      {
+
+                      },
                     ),
                   ],
-                )
+                ),
+                SizedBox(
+                  height: height * 0.3,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      height: 20,
+                      width: width * 0.714,
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: Color(0x33000000), width : 1)),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Icon(Icons.help, color:  Color(0xFF382E1E),),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    GestureDetector(
+                      child: const Text("Help", style: TextStyle(
+                        fontFamily: "LibreFranklin-Medium",
+                        fontSize: 18,
+                      ),),
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Help()));
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 13,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Icon(Icons.star, color:  Color(0xFF382E1E),),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    GestureDetector(
+                      child: const Text("Rate", style: TextStyle(
+                        fontFamily: "LibreFranklin-Medium",
+                        fontSize: 18,
+                      ),),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 13,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    const Icon(Icons.feedback, color:  Color(0xFF382E1E),),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    GestureDetector(
+                      child: const Text("Feedback", style: TextStyle(
+                        fontFamily: "LibreFranklin-Medium",
+                        fontSize: 18,
+                      ),),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 100,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0x29000000),
+                            offset: Offset(4, 6),
+                            blurRadius: 4,
+                            spreadRadius: 0,
+                          ),
+                        ],
+                      ),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          backgroundColor: const Color(0xFF00512D),
+                          disabledBackgroundColor: const Color(0xFF00512D),
+                        ),
+                          onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLogin()));
+                          // Navigator.popUntil(context, (route) => false)
+                          },
+                          child: const Text("LOGOUT", style: TextStyle(
+                            color: Color(0xFFFCFCFC),
+                            fontFamily: "LibreFranklin-Bold",
+                            fontSize: 15,
+                          ),),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -219,14 +370,13 @@ class _Home extends State<Home> {
                                       ),
                                       Text('Library',
                                           style: TextStyle(
-                                              fontFamily: "LibreFranklin-Regular",
-                                              fontSize: 27,
-                                              fontWeight: FontWeight.w900,
+                                              fontFamily: "LibreFranklin-Bold",
+                                              fontSize: 25,
                                               color: Color(0xFF382E1E))),
                                     ],
                                   ),
                                 ],
-                              )
+                              ),
                           ),
                         ),
                         GestureDetector(
@@ -264,9 +414,8 @@ class _Home extends State<Home> {
                                         ),
                                         Text('Results',
                                             style: TextStyle(
-                                                fontFamily: "LibreFranklin-Regular",
-                                                fontSize: 27,
-                                                fontWeight: FontWeight.w900,
+                                                fontFamily: "LibreFranklin-Bold",
+                                                fontSize: 25,
                                                 color: Color(0xFF382E1E))),
                                       ],
                                     ),
@@ -318,9 +467,8 @@ class _Home extends State<Home> {
                                       ),
                                       Text('Syllabus',
                                           style: TextStyle(
-                                              fontFamily: "LibreFranklin-Regular",
-                                              fontSize: 27,
-                                              fontWeight: FontWeight.w900,
+                                              fontFamily: "LibreFranklin-Bold",
+                                              fontSize: 25,
                                               color: Color(0xFF382E1E))),
                                     ],
                                   ),
@@ -355,16 +503,15 @@ class _Home extends State<Home> {
                                   const SizedBox(
                                     width: 17,
                                   ),
-                                  Column(
-                                    children: const [
+                                  const Column(
+                                    children: [
                                       SizedBox(
                                         height: 25,
                                       ),
                                       Text('Fee Details',
                                           style: TextStyle(
-                                              fontFamily: "LibreFranklin-Regular",
-                                              fontSize: 27,
-                                              fontWeight: FontWeight.w900,
+                                              fontFamily: "LibreFranklin-Bold",
+                                              fontSize: 25,
                                               color: Color(0xFF382E1E))),
                                     ],
                                   ),
@@ -399,16 +546,15 @@ class _Home extends State<Home> {
                                   const SizedBox(
                                     width: 17,
                                   ),
-                                  Column(
-                                    children: const [
+                                  const Column(
+                                    children: [
                                       SizedBox(
                                         height: 25,
                                       ),
                                       Text('Fee Details',
                                           style: TextStyle(
-                                              fontFamily: "LibreFranklin-Regular",
-                                              fontSize: 27,
-                                              fontWeight: FontWeight.w900,
+                                              fontFamily: "LibreFranklin-Bold",
+                                              fontSize: 25,
                                               color: Color(0xFF382E1E))),
                                     ],
                                   ),
@@ -438,11 +584,11 @@ class _Home extends State<Home> {
                     height: 70,
                     child: GNav(
                         backgroundColor: Colors.white,
-                        activeColor: Color(0xff00512D), // Colors.green.shade900,
+                        activeColor: const Color(0xff00512D), // Colors.green.shade900,
                         tabBackgroundColor: Colors.green.shade100,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         gap: 8,
-                        padding: EdgeInsets.symmetric(horizontal: 13,vertical: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 13,vertical: 8),
                         tabs: const [
                           GButton(
                             icon: Icons.home,

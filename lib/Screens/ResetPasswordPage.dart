@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:untitled/API/RenewPassword.dart';
 import 'package:untitled/Screens/PasswordTextField.dart';
 import 'package:untitled/Screens/OtpPage.dart';
+import 'package:untitled/Trails/ShimmerLoading.dart';
 import 'NormalTextFields.dart';
 
 class ResetPassword extends StatefulWidget
@@ -19,14 +20,11 @@ class _ResetPassword extends State<ResetPassword>
     // TODO: implement initState
     super.initState();
     NormalTextFields.textController.clear();
-    PasswordTextField.passwordController.clear();
   }
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    NormalTextFields.textController.clear();
-    PasswordTextField.passwordController.clear();
   }
   @override
   Widget build(BuildContext context)
@@ -167,7 +165,7 @@ class _ResetPassword extends State<ResetPassword>
                                   {
                                     if(snapshot.connectionState == ConnectionState.waiting)
                                       {
-                                        return CircularProgressIndicator();
+                                        return ShimmerLoading();
                                       }
                                     else if(snapshot.hasData)
                                       {

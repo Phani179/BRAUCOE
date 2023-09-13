@@ -38,7 +38,7 @@ class Screen2 extends StatelessWidget
             Screen2TextStyling(topInPositioned : 480, leftInPositioned : 10, text : "Continue as:", fontFamily: "LibreFranklin-Medium" , fontWeight : FontWeight.w500, fontSize : 20),
             //Student Button
             Screen2ButtonStyling(top : 530, text: "Student", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Screen3()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLogin()));
             },),  // 590
             //Admin Button
             Screen2ButtonStyling(top : 625, text: "Admin", onPressed: null),     // 690
