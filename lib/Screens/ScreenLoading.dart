@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/API/LoginAPI.dart';
 import 'package:untitled/Screens/HomePage.dart';
+import 'package:untitled/Screens/LoginShimmer.dart';
 import 'NormalTextFields.dart';
 import 'PasswordTextField.dart';
 
@@ -28,9 +29,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
         print(snapshot.connectionState);
         if(snapshot.connectionState == ConnectionState.waiting)
         {
-          return const AlertDialog(
-            title: CircularProgressIndicator(),
-          );
+          return LoginShimmerWidget();
         }
         else if(snapshot.hasData)
           {

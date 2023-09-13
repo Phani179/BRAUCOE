@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/Trails/ShimmerLoading.dart';
 
 import '../API/LoginAPI.dart';
 import '../API/MailAPI.dart';
@@ -21,9 +22,7 @@ class MailSendingPage extends StatelessWidget {
       {
         if(snapshot.connectionState == ConnectionState.waiting)
         {
-          return AlertDialog(
-            content: CircularProgressIndicator(),
-          );
+          return ShimmerLoading();
         }
         else if(snapshot.hasData)
         {

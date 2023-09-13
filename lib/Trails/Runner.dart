@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Screens/OtpPage.dart';
 import 'package:untitled/Screens/ResetPasswordPage.dart';
+import 'package:untitled/Trails/ImageLoading.dart';
+import 'package:untitled/Screens/LoginShimmer.dart';
+import 'package:untitled/Trails/ShimmerLoading.dart';
 
 import '../Screens/ForgotPassword.dart';
 
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       home:  Material(
-        child: ForgotPassword(),
+        child: LoginShimmerWidget(),
       ),
     );
   }

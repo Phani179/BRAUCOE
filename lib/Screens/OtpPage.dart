@@ -4,6 +4,7 @@ import 'package:untitled/Screens/ResetPasswordPage.dart';
 import '../API/LoginAPI.dart';
 import '../API/OTPApi.dart';
 import 'NormalTextFields.dart';
+import 'PasswordTextField.dart';
 
 class OtpPage extends StatefulWidget
 {
@@ -33,6 +34,8 @@ class _OtpPage extends State<OtpPage>
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    NormalTextFields.textController.clear();
+    PasswordTextField.passwordController.clear();
   }
   @override
   Widget build(BuildContext context)

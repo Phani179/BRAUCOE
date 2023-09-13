@@ -7,7 +7,7 @@ class StudentPersonalInfo
   late String _isPhysicalHandicap;
   late String _permanentAddress;
   late String _passportSizePhoto;
-  late String _password;
+  late String? _password;
 
   String get permanentAddress => _permanentAddress;
 
@@ -17,7 +17,7 @@ class StudentPersonalInfo
 
   String get dateOfBirth => _dateOfBirth;
 
-  String get password => _password;
+  String? get password => _password;
 
   String get isPhysicalHandicap => _isPhysicalHandicap;
 
@@ -43,7 +43,7 @@ class StudentPersonalInfo
     _isPhysicalHandicap = value;
   }
 
-  set password(String value) {
+  set password(String? value) {
     _password = value;
   }
 
