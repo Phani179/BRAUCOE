@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 
 class StudentPersonalInfo
 {
@@ -6,9 +7,10 @@ class StudentPersonalInfo
   late String _feeReimbursementStatus;
   late String _isPhysicalHandicap;
   late String _permanentAddress;
-  late String _passportSizePhoto;
+  late dynamic _passportSizePhoto;
   late String? _password;
 
+  StudentPersonalInfo();
   String get permanentAddress => _permanentAddress;
 
   set permanentAddress(String value) {
@@ -23,7 +25,7 @@ class StudentPersonalInfo
 
   String get category => _category;
 
-  String get passportSizePhoto => _passportSizePhoto;
+  dynamic get passportSizePhoto => _passportSizePhoto;
 
   String get feeReimbursementStatus => _feeReimbursementStatus;
 
@@ -31,7 +33,7 @@ class StudentPersonalInfo
     _feeReimbursementStatus = value;
   }
 
-  set passportSizePhoto(String value) {
+  set passportSizePhoto(dynamic value) {
     _passportSizePhoto = value;
   }
 
@@ -51,7 +53,7 @@ class StudentPersonalInfo
     _dateOfBirth = value;
   }
 
-  StudentPersonalInfo(
+  StudentPersonalInfo.properties(
       this._dateOfBirth,
       this._category,
       this._feeReimbursementStatus,
@@ -63,7 +65,7 @@ class StudentPersonalInfo
 
   factory StudentPersonalInfo.fromMap(Map<String, dynamic> json)
   {
-    return StudentPersonalInfo(
+    return StudentPersonalInfo.properties(
         json["studentPersonalInfo"]["dateOfBirth"],
         json["studentPersonalInfo"]["category"],
         json["studentPersonalInfo"]["feeReimbursementStatus"],

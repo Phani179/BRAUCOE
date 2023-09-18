@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/API/LoginAPI.dart';
 import 'package:untitled/Screens/HomePage.dart';
 import 'package:untitled/Screens/LoginShimmer.dart';
+import 'package:untitled/Screens/StudentLogin.dart';
 import 'NormalTextFields.dart';
 import 'PasswordTextField.dart';
 
@@ -14,11 +16,16 @@ class ScreenLoading extends StatefulWidget {
 }
 
 class _ScreenLoadingState extends State<ScreenLoading> {
+  @override
+  void initState() {
+    // TODO: implement initState
+  }
+
+  var isSuccess = false;
 
   @override
   Widget build(BuildContext context)
   {
-    var isSuccess = false;
     var studentId = NormalTextFields.textController.text;
     var password = PasswordTextField.passwordController.text;
     LoginAPI loginAPI = LoginAPI();
@@ -88,9 +95,14 @@ class _ScreenLoadingState extends State<ScreenLoading> {
               actions: [
                 Center(
                   child: ElevatedButton(
-                    onPressed: (){
+                    onPressed: () async {
                       Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+                      var prefs = await SharedPreferences.getInstance();
+                      var loginStatus = isSuccess;
+                        print("Login Status $loginStatus");
+                        prefs.setBool(StudentLogin.isLoggedIn, loginStatus);
+                        prefs.setString(StudentLogin.studentId, studentId);
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

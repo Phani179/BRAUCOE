@@ -10,6 +10,10 @@ class StudentLogin extends StatefulWidget
 {
   @override
   State<StudentLogin> createState() => _StudentLogin();
+
+  static const String isLoggedIn = "isLoggedIn";
+  static const String studentId = "studentId";
+
 }
 
 class _StudentLogin extends State<StudentLogin>
@@ -42,7 +46,7 @@ class _StudentLogin extends State<StudentLogin>
                 children: <Widget>[
                   //remain code is the same
                   Positioned(
-                    top: 0,
+                    top: 25,
                     left: 0,
                     child : IconButton(
                       onPressed: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:untitled/Screens/Screen1.dart';
 
-void main() => runApp(Screen1());
+import 'Screens/Handler.dart';
+
+void main() => runApp(Handler());
