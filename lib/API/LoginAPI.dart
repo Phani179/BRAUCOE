@@ -30,6 +30,7 @@ class LoginAPI
     print("Request Sent");
     final response = await http.get(uri);
     final body = jsonDecode(response.body);
+    print(body);
     print("Data Parsed");
     studentDetails = StudentDetails.fromMap(body[0]);
     personalInfo = StudentPersonalInfo.fromMap(body[0]);
