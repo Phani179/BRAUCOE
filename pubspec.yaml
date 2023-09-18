@@ -32,7 +32,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.6
+  http: ^1.1.0
   google_nav_bar: ^5.0.6
   auto_size_text: ^3.0.0
   dropdown_button2: ^2.2.0
@@ -44,6 +44,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   shimmer: ^3.0.0
   image_picker: ^1.0.4
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +97,7 @@ flutter:
     - assets/images/result.png
     - assets/images/ResultPageImage.png
     - assets/images/HelpPageImage.png
+    - assets/images/ProfileImage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

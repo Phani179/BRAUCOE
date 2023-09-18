@@ -1,36 +1,39 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:auto_size_text/auto_size_text.dart';
 import'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:untitled/API/LoginTrailAPI.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/API/ImageAPI.dart';
 import 'package:untitled/Screens/Help.dart';
-import 'package:untitled/Screens/ResultPage.dart';
 import 'package:untitled/Screens/ResultTable.dart';
-
 import '../API/LoginAPI.dart';
 import '../API/ResultAPI.dart';
 import 'CarosuelSliding.dart';
 import 'StudentLogin.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: Home(),
+//     );
+//   }
+// }
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-    );
-  }
-}
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _Home();
+  State<HomePage> createState() => _HomePage();
 }
 
-class _Home extends State<Home> {
+class _HomePage extends State<HomePage> {
   GlobalKey<ScaffoldState>? scaffoldState = GlobalKey();
+  File? imageFile;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -38,6 +41,9 @@ class _Home extends State<Home> {
     return Scaffold(
       key: scaffoldState,
       backgroundColor: const Color(0xFFEFE1D0),
+
+        // Drawer
+
         drawer: Drawer(
           child: SafeArea(
             child: Column(
@@ -52,7 +58,7 @@ class _Home extends State<Home> {
                     ),
                     GestureDetector
                       (
-                        child: Icon(Icons.arrow_back_outlined),
+                        child: const Icon(Icons.arrow_back_outlined),
                       onTap: (){
                           scaffoldState?.currentState?.closeDrawer();
                       },
@@ -67,14 +73,57 @@ class _Home extends State<Home> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Container(
-                      height: height * 0.15,
-                      width: width * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(70),
-                        color: Colors.grey,
-                      ),
-                    )
+            imageFile != null ?
+            GestureDetector(
+                child: SizedBox(
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage: FileImage(imageFile!),
+                  ),
+                ),
+                onTap: () async {
+                  print("Image Upload : 1");
+                  await getImage();
+                  print("Image Upload : 4");
+                  ImageAPI imageAPI = ImageAPI();
+                  imageAPI.uploadAPI(imageFile);
+                  print("Successfully Uploaded");
+                }
+            )
+            : LoginAPI.personalInfo?.passportSizePhoto != null ?
+            GestureDetector(
+                child: SizedBox(
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage: MemoryImage(base64Decode(LoginAPI.personalInfo?.passportSizePhoto)),
+                  ),
+                ),
+                onTap: () async {
+                  print("Image Upload : 1");
+                  await getImage();
+                  print("Image Upload : 4");
+                  ImageAPI imageAPI = ImageAPI();
+                  imageAPI.uploadAPI(imageFile);
+                  print("Successfully Uploaded");
+                }
+            )
+                :
+            GestureDetector(
+                child: const SizedBox(
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundImage: AssetImage("assets/images/ProfileImage.png"),
+                  ),
+                ),
+                onTap: () async {
+                  print("Image Upload : 1");
+                  await getImage();
+                  print("Image Upload : 4");
+                  ImageAPI imageAPI = ImageAPI();
+                  imageAPI.uploadAPI(imageFile);
+                  print("Successfully Uploaded");
+                }
+            )
                   ],
                 ),
                 const SizedBox(
@@ -139,7 +188,7 @@ class _Home extends State<Home> {
                     ),
                     Container(
                       height: 20,
-                      width: width * 0.714,
+                      width: 295,
                       decoration: const BoxDecoration(
                         border: Border(bottom: BorderSide(color: Color(0x33000000), width : 1)),
                       ),
@@ -240,7 +289,10 @@ class _Home extends State<Home> {
                           backgroundColor: const Color(0xFF00512D),
                           disabledBackgroundColor: const Color(0xFF00512D),
                         ),
-                          onPressed: (){
+                          onPressed: () async {
+                          var prefs = await SharedPreferences.getInstance();
+                          prefs.setBool(StudentLogin.isLoggedIn, false);
+                          print("Logout : ${prefs.getBool(StudentLogin.isLoggedIn)}");
                           Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLogin()));
                           // Navigator.popUntil(context, (route) => false)
                           },
@@ -257,6 +309,9 @@ class _Home extends State<Home> {
             ),
           ),
         ),
+
+        // Drawer code Ended.
+
         // resizeToAvoidBottomInset: true,
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -266,8 +321,15 @@ class _Home extends State<Home> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                const Row(
+                  children: [
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.15,
+                  height: MediaQuery.of(context).size.height * 0.14,
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     children: [
@@ -280,7 +342,27 @@ class _Home extends State<Home> {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.06,
                             ),
-                               const Icon(Icons.account_circle_sharp, size: 50,),
+                            imageFile != null ?
+                            SizedBox(
+                                  child: CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: FileImage(imageFile!),
+                                  ),
+                                )
+                                : LoginAPI.personalInfo?.passportSizePhoto != null ?
+                            SizedBox(
+                                  child: CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: MemoryImage(base64Decode(LoginAPI.personalInfo?.passportSizePhoto)),
+                                  ),
+                                )
+                                :
+                           const SizedBox(
+                                  child: CircleAvatar(
+                                    radius: 25,
+                                    backgroundImage: AssetImage("assets/images/ProfileImage.png"),
+                                  ),
+                                )
                               ],
                         ),
                         onTap: (){
@@ -309,6 +391,9 @@ class _Home extends State<Home> {
                               ),
                               // Text(, style: TextStyle(fontSize: 18, fontFamily: "LibreFranklin-Regular", fontWeight: FontWeight.w500),),
                             ],
+                          ),
+                          const SizedBox(
+                            height: 3,
                           ),
                           Text("${LoginAPI.studentDetails?.studentId}", style: const TextStyle(fontSize: 16, fontFamily: "LibreFranklin-Medium")),
                         ],
@@ -620,5 +705,23 @@ class _Home extends State<Home> {
               ),
             ),
     );
+  }
+
+  Future getImage() async
+  {
+    print("Image Upload : 2");
+    final returnedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+    print(returnedImage?.path);
+    if(returnedImage == null) {
+      print("Image Null");
+      return;
+    }
+        setState(() {
+          print("Set State");
+          imageFile = File(returnedImage.path);
+        });
+        print("Image Upload : 3");
   }
 }

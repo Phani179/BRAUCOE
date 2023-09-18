@@ -1,26 +1,89 @@
 import "package:flutter/material.dart";
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/API/LoginAPI.dart';
+import 'package:untitled/Screens/HomePageShimmerLoading.dart';
+import 'package:untitled/Screens/StudentLogin.dart';
+import 'HomePage.dart';
 import 'Screen2.dart';
 
-class Screen1 extends StatelessWidget
+class Handler extends StatefulWidget
 {
-  const Screen1({super.key});
+  @override
+  State<StatefulWidget> createState() => _Handler();
+}
+
+class _Handler extends State<Handler>
+{
+  var prefs;
+  bool? isLoggedIn = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("Step 1");
+
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title:
-
-      "University-BRAU",
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          resizeToAvoidBottomInset: false,
-            // body: HomePage()4
-          body: HomePage(),
+        title: "University-BRAU",
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        // body: HomePage()
+        body: FutureBuilder(
+        future: whereToGo(),
+        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+          if (snapshot.hasData) {
+            if(isLoggedIn != null)
+              {
+                if(isLoggedIn == true)
+                  {
+                    var studentId = prefs.getString(StudentLogin.studentId);
+                    LoginAPI loginAPI = LoginAPI();
+                    return FutureBuilder(
+                      future: loginAPI.getStudent(studentId),
+                      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                        if (snapshot.hasData) {
+                          return const HomePage();
+                        }
+                        else {
+                          // Home Page Rendering.
+                          return const HomePageShimmerLoading();
+                        }
+                      },
+                    );
+                  }
+                else
+                  {
+                    return LogoPage();
+                  }
+              }
+            else
+              {
+                return LogoPage();
+              }
+          }
+            // SplashScreen
+            return CircularProgressIndicator();
+        }
+    )
         ),
     );
   }
+
+  Future whereToGo()
+  async {
+    print("Step 2");
+    prefs = await SharedPreferences.getInstance();
+    print("Step 3");
+    isLoggedIn = prefs.getBool(StudentLogin.isLoggedIn);
+    print("${isLoggedIn}");
+    print("Step 4");
+    return true;
+  }
 }
 
-class HomePage extends StatelessWidget
+class LogoPage extends StatelessWidget
 {
   @override
   Widget build(BuildContext context) {
