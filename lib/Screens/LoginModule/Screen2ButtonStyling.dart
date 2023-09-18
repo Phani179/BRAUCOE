@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/StudentLogin.dart';
+import 'package:untitled/Screens/LoginModule/StudentLogin.dart';
 
 class Screen2ButtonStyling extends StatelessWidget
 {

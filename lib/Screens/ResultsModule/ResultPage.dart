@@ -1,17 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/ResultTable.dart';
-import '../API/ResultAPI.dart';
+import 'package:untitled/Screens/ResultsModule/ResultTable.dart';
+import '../../API/ResultAPI.dart';
 
-class ResultPage extends StatefulWidget {
+class ResultPageHandler extends StatefulWidget {
   String? semester;
   var reg_no;
-  ResultPage(this.semester, var this.reg_no, {super.key});
+  ResultPageHandler(this.semester, var this.reg_no, {super.key});
   @override
-  State<ResultPage> createState() => _ResultPageState();
+  State<ResultPageHandler> createState() => _ResultPageHandler();
 }
 
-class _ResultPageState extends State<ResultPage> {
+class _ResultPageHandler extends State<ResultPageHandler> {
 ResultAPI resultsAPI = ResultAPI();
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,9 @@ ResultAPI resultsAPI = ResultAPI();
             );
           }
           else if(snapshot.hasData)
-            {
-              return ResultTable();
-            }
+          {
+            return const ResultTable();
+          }
           else
             {
               return AlertDialog(

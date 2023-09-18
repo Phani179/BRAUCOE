@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../Screens/CarosuelSliding.dart';
-import '../Screens/NormalTextFields.dart';
+import '../Screens/HomePageModule/CarosuelSliding.dart';
+import '../Screens/LoginModule/NormalTextFields.dart';
 
 class Screen4 extends StatelessWidget
 {

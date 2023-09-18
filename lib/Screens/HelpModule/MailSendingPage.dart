@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Trails/ShimmerLoading.dart';
+import 'package:untitled/Screens/ShimmerEffectModule/MailandResetPwdShimmerLoading.dart';
 
-import '../API/LoginAPI.dart';
-import '../API/MailAPI.dart';
+import '../../API/LoginAPI.dart';
+import '../../API/MailAPI.dart';
 
 class MailSendingPage extends StatelessWidget {
   MailSendingPage(this.subject, this.message, {super.key});
@@ -22,7 +22,7 @@ class MailSendingPage extends StatelessWidget {
       {
         if(snapshot.connectionState == ConnectionState.waiting)
         {
-          return ShimmerLoading();
+          return MailandResetPwdShimmerLoading();
         }
         else if(snapshot.hasData)
         {

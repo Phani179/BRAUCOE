@@ -2,13 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:untitled/API/LoginAPI.dart';
 
-void main()
-{
-  RenewPassword renewPassword = RenewPassword();
-  renewPassword.renewPassword("Aaryan@1234");
-}
-
-class RenewPassword
+class RenewPasswordAPI
 {
   Future renewPassword(String newPassword) async
   {

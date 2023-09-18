@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/Screens/OtpPage.dart';
-import 'NormalTextFields.dart';
+import 'package:untitled/Screens/ForgotPasswordModule/OtpPage.dart';
+import '../LoginModule/NormalTextFields.dart';
 
 class ForgotPassword extends StatefulWidget
 {
