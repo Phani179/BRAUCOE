@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../API/LoginAPI.dart';
-import '../Screens/NormalTextFields.dart';
+import '../Screens/LoginModule/NormalTextFields.dart';
 
 class OtpPageRedirect extends StatelessWidget {
   OtpPageRedirect({super.key});

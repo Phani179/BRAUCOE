@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ShimmerLoading extends StatefulWidget {
+class MailandResetPwdShimmerLoading extends StatefulWidget {
   @override
-  _ShimmerLoading createState() => _ShimmerLoading();
+  State<MailandResetPwdShimmerLoading> createState() => _MailandResetPwdShimmerLoading();
 }
-class _ShimmerLoading extends State<ShimmerLoading> {
+class _MailandResetPwdShimmerLoading extends State<MailandResetPwdShimmerLoading> {
   @override
   Widget build(BuildContext context){
     return AlertDialog(

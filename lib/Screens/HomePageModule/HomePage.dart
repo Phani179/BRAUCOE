@@ -6,24 +6,12 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/API/ImageAPI.dart';
-import 'package:untitled/Screens/Help.dart';
-import 'package:untitled/Screens/ResultTable.dart';
-import '../API/LoginAPI.dart';
-import '../API/ResultAPI.dart';
+import 'package:untitled/Screens/HelpModule/Help.dart';
+import '../../API/LoginAPI.dart';
+import '../ResultsModule/ResultHomePage.dart';
 import 'CarosuelSliding.dart';
-import 'StudentLogin.dart';
+import '../LoginModule/StudentLogin.dart';
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: Home(),
-//     );
-//   }
-// }
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -49,7 +37,7 @@ class _HomePage extends State<HomePage> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 15,
+                  height: 5,
                 ),
                 Row(
                   children: [
@@ -66,7 +54,7 @@ class _HomePage extends State<HomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.04,
+                  height: height * 0.02,
                 ),
                 Row(
                   children: [
@@ -78,6 +66,7 @@ class _HomePage extends State<HomePage> {
                 child: SizedBox(
                   child: CircleAvatar(
                     radius: 60,
+                    backgroundColor: Colors.white,
                     backgroundImage: FileImage(imageFile!),
                   ),
                 ),
@@ -95,6 +84,7 @@ class _HomePage extends State<HomePage> {
                 child: SizedBox(
                   child: CircleAvatar(
                     radius: 60,
+                    backgroundColor: Colors.white,
                     backgroundImage: MemoryImage(base64Decode(LoginAPI.personalInfo?.passportSizePhoto)),
                   ),
                 ),
@@ -112,6 +102,7 @@ class _HomePage extends State<HomePage> {
                 child: const SizedBox(
                   child: CircleAvatar(
                     radius: 60,
+                    backgroundColor: Colors.white,
                     backgroundImage: AssetImage("assets/images/ProfileImage.png"),
                   ),
                 ),
@@ -179,7 +170,7 @@ class _HomePage extends State<HomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: height * 0.3,
+                  height: height * 0.25,
                 ),
                 Row(
                   children: [
@@ -509,13 +500,7 @@ class _HomePage extends State<HomePage> {
                             ),
                           ),
                           onTap: (){
-                            setState(() {
-                              ResultAPI resultsAPI = ResultAPI();
-                              resultsAPI.getResult("Semester- 1",LoginAPI.studentDetails?.studentId);
-                            });
-                            Future.delayed(const Duration(seconds: 3), () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ResultTable()));
-                            });
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultHomePage()));
                           },
                         ),
                         Container(
@@ -658,43 +643,45 @@ class _HomePage extends State<HomePage> {
             bottomNavigationBar: Container(
               decoration: const BoxDecoration(
                 color: Colors.white,
-                border: Border(top: BorderSide(color: Colors.black)),
               ),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
                 child: Container(
                   decoration: const BoxDecoration(
                   ),
-                  child: SizedBox(
+                  child: const SizedBox(
                     height: 70,
                     child: GNav(
                         backgroundColor: Colors.white,
-                        activeColor: const Color(0xff00512D), // Colors.green.shade900,
-                        tabBackgroundColor: Colors.green.shade100,
+                        activeColor: Color(0xff00512D), // Colors.green.shade900,
+                        tabBackgroundColor: Color(0xFF9DCCB7),
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         gap: 8,
-                        padding: const EdgeInsets.symmetric(horizontal: 13,vertical: 8),
-                        tabs: const [
+                        padding: EdgeInsets.symmetric(horizontal: 13,vertical: 8),
+                        tabs: [
                           GButton(
                             icon: Icons.home,
+                            iconColor: Color(0xFF382E1E),
                             iconSize: 25,
                             text: 'Home',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium", color: Color(0xFF00512D)),
                             textSize: 25,
                           ),
                           GButton(
                             icon: Icons.search,
+                            iconColor: Color(0xFF382E1E),
                             iconSize: 25,
                             text: 'Search',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium", color: Color(0xFF00512D)),
                             textSize: 25,
                             onPressed: null,
                           ),
                           GButton(
                             icon: Icons.settings,
+                            iconColor: Color(0xFF382E1E),
                             iconSize: 25,
                             text: 'Settings',
-                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium"),
+                            textStyle: TextStyle(fontFamily: "LibreFranklin-Medium", color: Color(0xFF00512D)),
                             textSize: 25,
                             onPressed: null,
                           ),

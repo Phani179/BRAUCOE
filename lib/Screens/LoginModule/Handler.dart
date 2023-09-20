@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/API/LoginAPI.dart';
-import 'package:untitled/Screens/HomePageShimmerLoading.dart';
-import 'package:untitled/Screens/StudentLogin.dart';
-import 'HomePage.dart';
+import 'package:untitled/Screens/ShimmerEffectModule/HomePageShimmerLoading.dart';
+import 'package:untitled/Screens/LoginModule/StudentLogin.dart';
+import '../HomePageModule/HomePage.dart';
 import 'Screen2.dart';
 
 class Handler extends StatefulWidget
@@ -16,12 +16,6 @@ class _Handler extends State<Handler>
 {
   var prefs;
   bool? isLoggedIn = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    print("Step 1");
-
-  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,10 +40,14 @@ class _Handler extends State<Handler>
                         if (snapshot.hasData) {
                           return const HomePage();
                         }
-                        else {
+                        else if(snapshot.connectionState == ConnectionState.waiting){
                           // Home Page Rendering.
                           return const HomePageShimmerLoading();
                         }
+                        else
+                          {
+                            return const HomePageShimmerLoading();
+                          }
                       },
                     );
                   }

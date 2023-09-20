@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/API/LoginAPI.dart';
-import 'package:untitled/Screens/HomePage.dart';
-import 'package:untitled/Screens/LoginShimmer.dart';
-import 'package:untitled/Screens/StudentLogin.dart';
+import 'package:untitled/Screens/HomePageModule/HomePage.dart';
+import 'package:untitled/Screens/ShimmerEffectModule/LoginShimmer.dart';
+import 'package:untitled/Screens/LoginModule/StudentLogin.dart';
 import 'NormalTextFields.dart';
 import 'PasswordTextField.dart';
 

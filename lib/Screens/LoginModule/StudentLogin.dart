@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/Screens/ScreenLoading.dart';
-import 'package:untitled/Screens/PasswordTextField.dart';
-import 'package:untitled/Screens/ForgotPassword.dart';
-import 'Help.dart';
+import 'package:untitled/Screens/LoginModule/ScreenLoading.dart';
+import 'package:untitled/Screens/LoginModule/PasswordTextField.dart';
+import 'package:untitled/Screens/ForgotPasswordModule/ForgotPassword.dart';
+import '../HelpModule/Help.dart';
 import 'NormalTextFields.dart';
 
 class StudentLogin extends StatefulWidget

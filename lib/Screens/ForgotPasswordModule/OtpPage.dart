@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:untitled/Screens/ResetPasswordPage.dart';
-import '../API/LoginAPI.dart';
-import '../API/OTPApi.dart';
-import 'NormalTextFields.dart';
-import 'PasswordTextField.dart';
+import 'package:untitled/Screens/ForgotPasswordModule/ResetPasswordPage.dart';
+import '../../API/LoginAPI.dart';
+import '../../API/OtpAPI.dart';
+import '../LoginModule/NormalTextFields.dart';
+import '../LoginModule/PasswordTextField.dart';
 
 class OtpPage extends StatefulWidget
 {
@@ -22,10 +22,10 @@ class _OtpPage extends State<OtpPage>
     // TODO: implement initState
     super.initState();
     LoginAPI loginApi = LoginAPI();
-    OtpApi otpApi = OtpApi();
+    OtpAPI otpAPI = OtpAPI();
     loginApi.getStudent(NormalTextFields.textController.text).then((value) => {
       print(value),
-    otpApi.getOTP(LoginAPI.studentDetails?.mobile_no).then((value) {
+    otpAPI.getOTP(LoginAPI.studentDetails?.mobile_no).then((value) {
       print(value);
       widget.generatedOtp = value; })
     });

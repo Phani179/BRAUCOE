@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/API/LoginAPI.dart';
-import 'package:untitled/API/MailAPI.dart';
-import 'package:untitled/API/MailSender.dart';
-import 'package:untitled/Screens/MailSendingPage.dart';
-import 'HomePage.dart';
+import 'package:untitled/Screens/HelpModule/MailSendingPage.dart';
 import 'MessageTextField.dart';
 import 'SubjectTextField.dart';
 

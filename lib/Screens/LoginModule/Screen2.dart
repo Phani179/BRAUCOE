@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/Screen2ImageStyling.dart';
-import 'package:untitled/Screens/Screen2TextStyling.dart';
+import 'package:untitled/Screens/LoginModule/Screen2ImageStyling.dart';
+import 'package:untitled/Screens/LoginModule/Screen2TextStyling.dart';
 
 import 'Screen2ButtonStyling.dart';
 import 'StudentLogin.dart';

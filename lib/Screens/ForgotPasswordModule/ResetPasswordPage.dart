@@ -1,11 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/API/RenewPassword.dart';
-import 'package:untitled/Screens/PasswordTextField.dart';
-import 'package:untitled/Screens/OtpPage.dart';
-import 'package:untitled/Trails/ShimmerLoading.dart';
-import 'NormalTextFields.dart';
+import 'package:untitled/API/RenewPasswordAPI.dart';
+import 'package:untitled/Screens/LoginModule/PasswordTextField.dart';
+import 'package:untitled/Screens/ShimmerEffectModule/MailandResetPwdShimmerLoading.dart';
+import '../LoginModule/NormalTextFields.dart';
 
 class ResetPassword extends StatefulWidget
 {
@@ -155,7 +154,7 @@ class _ResetPassword extends State<ResetPassword>
                         onPressed: () {
                           if(PasswordTextField.passwordController.text == NormalTextFields.textController.text)
                           {
-                            RenewPassword renewPassword = RenewPassword();
+                            RenewPasswordAPI renewPassword = RenewPasswordAPI();
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -165,7 +164,7 @@ class _ResetPassword extends State<ResetPassword>
                                   {
                                     if(snapshot.connectionState == ConnectionState.waiting)
                                       {
-                                        return ShimmerLoading();
+                                        return MailandResetPwdShimmerLoading();
                                       }
                                     else if(snapshot.hasData)
                                       {

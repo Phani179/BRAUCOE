@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/OtpPage.dart';
-import 'package:untitled/Screens/ResetPasswordPage.dart';
-import 'package:untitled/Screens/HomePageShimmerLoading.dart';
-import 'package:untitled/Trails/ImageLoading.dart';
-import 'package:untitled/Screens/LoginShimmer.dart';
-import 'package:untitled/Trails/ShimmerLoading.dart';
-import 'package:untitled/Trails/ShowProfile.dart';
+import 'package:untitled/Screens/ResultsModule/ResultTable.dart';
+import 'package:untitled/Screens/ResultsModule/ResultHomePage.dart';
 
-import '../Screens/ForgotPassword.dart';
+import 'ProfilePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +15,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       home:  Material(
-        child: HomePageShimmerLoading(),
+        color: Color(0xFFEFE1D0),
+        child: ProfilePage(),
       ),
     );
   }

@@ -1,4 +1,4 @@
-import '../API/ResultInfo.dart';
+import 'ResultInfo.dart';
 
 class StudentInfo
 {
