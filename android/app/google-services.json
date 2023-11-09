@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1043534730937",
+    "firebase_url": "https://braucoe-33c92-default-rtdb.firebaseio.com",
+    "project_id": "braucoe-33c92",
+    "storage_bucket": "braucoe-33c92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043534730937:android:9a34e60777cb6cab272d68",
+        "android_client_info": {
+          "package_name": "com.example.firebase_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI5zqlpWOXChecbxoiuBJ5_Vr41jviQC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043534730937:android:234f9fe70194beb9272d68",
+        "android_client_info": {
+          "package_name": "com.example.restapiusage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI5zqlpWOXChecbxoiuBJ5_Vr41jviQC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
