@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:untitled/Screens/ResultsModule/ResultTable.dart';
+import 'package:untitled/Screens/ShimmerEffectModule/ResultPageLoding.dart';
 import '../../API/ResultAPI.dart';
 
 class ResultPageHandler extends StatefulWidget {
@@ -22,9 +23,7 @@ ResultAPI resultsAPI = ResultAPI();
         {
           if(snapshot.connectionState == ConnectionState.waiting)
           {
-            return const AlertDialog(
-              title : CircularProgressIndicator(),
-            );
+            return ResultPageLoading();
           }
           else if(snapshot.hasData)
           {

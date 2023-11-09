@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class NormalTextFields extends StatefulWidget
 {
-  final Color fillColor = Color(0x4DCF9F69);
+  final Color fillColor = const Color(0x4DCF9F69);
   final Color focusedColor = Colors.white;
   static var textController = TextEditingController();
   String hintText;

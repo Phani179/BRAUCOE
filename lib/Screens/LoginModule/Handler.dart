@@ -38,7 +38,7 @@ class _Handler extends State<Handler>
                       future: loginAPI.getStudent(studentId),
                       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                         if (snapshot.hasData) {
-                          return const HomePage();
+                          return HomePage();
                         }
                         else if(snapshot.connectionState == ConnectionState.waiting){
                           // Home Page Rendering.

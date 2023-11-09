@@ -9,6 +9,7 @@ class OtpAPI
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     final otp = jsonDecode(response.body);
+    print(otp);
     return otp;
   }
 }

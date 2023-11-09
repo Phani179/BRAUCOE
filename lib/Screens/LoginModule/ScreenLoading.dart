@@ -102,7 +102,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                         print("Login Status $loginStatus");
                         prefs.setBool(StudentLogin.isLoggedIn, loginStatus);
                         prefs.setString(StudentLogin.studentId, studentId);
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -193,7 +193,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
           }
         else
           {
-            return AlertDialog(
+            return const AlertDialog(
               title: Text("Please, Enter Credentials"),
             );
           }

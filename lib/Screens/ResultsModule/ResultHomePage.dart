@@ -44,7 +44,7 @@ class _ResultHomePageState extends State<ResultHomePage> {
                 child: const Icon(Icons.arrow_back, size: 30,),
                 onTap: ()
                 {
-                  return null;
+                  Navigator.pop(context);
                 },
               ),
             ),

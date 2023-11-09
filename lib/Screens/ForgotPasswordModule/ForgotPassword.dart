@@ -82,7 +82,7 @@ class _ForgotPassword extends State<ForgotPassword>
                     top: 500,
                     left: 20,
                     right: 20,
-                    child: NormalTextFields(hintText: "Registration number", prefixIcon: Icons.person_outline, inputType: TextInputType.phone, filteringTextInputFromatter: [FilteringTextInputFormatter.digitsOnly],)
+                    child: NormalTextFields(hintText: "Registration number", prefixIcon: Icons.person_outline, inputType: TextInputType.text, filteringTextInputFromatter: [FilteringTextInputFormatter.digitsOnly],)
                 ),
 
                 Positioned(

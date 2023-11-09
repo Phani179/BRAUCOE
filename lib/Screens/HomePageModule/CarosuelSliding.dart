@@ -49,8 +49,7 @@ class _CarouselSlidingState extends State<CarouselSliding>
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Stack(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -103,8 +102,7 @@ class _CarouselSlidingState extends State<CarouselSliding>
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget indicator(bool matched)

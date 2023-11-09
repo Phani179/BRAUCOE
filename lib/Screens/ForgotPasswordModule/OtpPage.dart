@@ -170,8 +170,7 @@ class _OtpPage extends State<OtpPage>
                           print(widget.generatedOtp.runtimeType);
                           if(widget.userOtp == widget.generatedOtp)
                             {
-                              Navigator.pop(context);
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResetPassword()));
                             }
                           else
                             {

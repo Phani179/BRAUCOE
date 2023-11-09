@@ -66,13 +66,13 @@ class StudentPersonalInfo
   factory StudentPersonalInfo.fromMap(Map<String, dynamic> json)
   {
     return StudentPersonalInfo.properties(
-        json["studentPersonalInfo"]["dateOfBirth"],
-        json["studentPersonalInfo"]["category"],
-        json["studentPersonalInfo"]["feeReimbursementStatus"],
-        json["studentPersonalInfo"]["isPhysicalHandicap"],
-        json["studentPersonalInfo"]["permanentAddress"],
-        json["studentPersonalInfo"]["passportSizePhoto"],
-        json["studentPersonalInfo"]["password"]
+        json["dateOfBirth"],
+        json["category"],
+        json["feeReimbursementStatus"],
+        json["isPhysicalHandicap"],
+        json["permanentAddress"],
+        json["passportSizePhoto"],
+        json["password"]
     );
   }
 

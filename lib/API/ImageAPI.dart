@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:untitled/API/LoginAPI.dart';
 
 class ImageAPI
 {
@@ -8,9 +9,10 @@ class ImageAPI
     {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://braucoeapi-production.up.railway.app/updateProfileDp/2081951044'), // Replace with your API endpoint
+        Uri.parse('http://braucoeapi-production.up.railway.app/updateProfileDp/${LoginAPI.studentDetails?.studentId}'), // Replace with your API endpoint
+        // http://braucoeapi-production.up.railway.app
       );
-      print("File Dtetcted");
+      print("File Detected");
       print(value.path);
       print("uploading");
       request.files.add(

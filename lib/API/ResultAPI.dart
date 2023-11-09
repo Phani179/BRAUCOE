@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:untitled/ModelClasses/StudentInfo.dart';
 import 'package:http/http.dart' as http;
 import '../ModelClasses/ResultInfo.dart';
 
@@ -16,7 +15,6 @@ void main()
 
 class ResultAPI
 {
-  late StudentInfo studentInfo;
   late ResultInfo resultInfo;
   static List result =[];
   static double SGPA = 0;
