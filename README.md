@@ -1,16 +1,33 @@
-# restapiusage
+# BRAUCOE
 
-A new Flutter project.
+A College App project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Languages : Dart, Java.
+Frameworks : Flutter, Spring Boot.
+Tools : Andriod Studio, Postman.
+API : Rest API's.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To run this application on your local machine, follow these steps:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone this repository:
+
+`git clone https://github.com/Phani179/BRAUCOE.git`
+
+2. Navigate to the project directory:
+
+_`cd BRAUCOE`
+
+3. Open the folder with either Andriod Studio or Visual Studio Code.
+
+4. Install the required dependencies:
+
+_`flutter pub get`_
+
+5. Run the app on your emulator or physical device:
+
+`flutter run`
+
