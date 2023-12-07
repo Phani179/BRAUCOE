@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/widgets/drop_down_item.dart';
 import 'package:untitled/widgets/drop_down_validator.dart';
-import 'package:untitled/Screens/syllabus_module/syllabus_page.dart';
 import 'package:untitled/utilities/semester.dart';
 
 class SemSelectionDropDown extends StatefulWidget {

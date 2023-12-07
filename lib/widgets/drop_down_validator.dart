@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/widgets/subject_selection_page.dart';
-import 'package:untitled/Screens/syllabus_module/syllabus_page.dart';
 
 class DropDownValidator extends StatefulWidget {
   DropDownValidator(

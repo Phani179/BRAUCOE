@@ -79,40 +79,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/HomePageLogo.png
-    - assets/images/HomePageLogoBG1.png
-    - assets/images/HomePageLogoBG2.png
-    - assets/images/BRAULogoBG.png
-    - assets/images/BRAULogo.png
-    - assets/images/ISO.png
-    - assets/images/NAACB.png
-    - assets/images/SraddavanLogo.png
-    - assets/images/SwachBharat.png
-    - assets/images/Screen3Image.png
-    - assets/images/Screen3ImageBG.png
-    - assets/images/Screen4Image.png
-    - assets/images/Screen4BGSphere.png
-    - assets/images/Screen4ImageStool.png
-    - assets/images/Screen4ImageMug.png
-    - assets/images/Screen6Notif.png
-    - assets/images/Done.png
-    - assets/images/Wrong.png
-    - assets/images/LeftCross.png
-    - assets/images/RightCross.png
-    - assets/images/fees.png
-    - assets/images/fire.png
-    - assets/images/syllabus.png
-    - assets/images/library.png
-    - assets/images/result.png
-    - assets/images/ResultPageImage.png
-    - assets/images/HelpPageImage.png
-    - assets/images/ProfileImage.png
-    - assets/images/syllabus_page_image.svg
-    - assets/images/previous_papers_screen_image.svg
-    - assets/images/previous_papers.png
-    - assets/images/fees.svg
-    - assets/images/result.svg
-    - assets/images/syllabus.svg
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

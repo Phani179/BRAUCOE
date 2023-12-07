@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Screens/ProfileModule/profile_page.dart';
+import 'package:untitled/screens/profie/profile_page.dart';
 import 'package:untitled/widgets/profile_image_generator.dart';
-import '../API/LoginAPI.dart';
-import '../Screens/HelpModule/Help.dart';
-import '../Screens/LoginModule/StudentLogin.dart';
+import '../providers/login_api.dart';
+import '../screens/help/help.dart';
+import '../screens/login/student_login.dart';
 
 class HomePageDrawer extends StatelessWidget {
   HomePageDrawer({required this.scaffoldState, super.key});

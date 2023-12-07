@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/ProfileModule/profile_page.dart';
 import 'package:untitled/firebase_options.dart';
+import 'package:untitled/screens/login/handler.dart';
 import 'package:untitled/utilities/profile_image_notifier.dart';
-import 'Screens/LoginModule/Handler.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

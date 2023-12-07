@@ -5,7 +5,7 @@ import 'package:untitled/utilities/profile_image_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/widgets/profile_image_item.dart';
 
-import '../API/LoginAPI.dart';
+import '../providers/login_api.dart';
 
 class ProfileImageGenerator extends StatelessWidget {
   ProfileImageGenerator({required this.radius, super.key});
