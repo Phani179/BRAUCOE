@@ -2,21 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/firebase_options.dart';
 import 'package:untitled/screens/login/handler.dart';
+import 'package:untitled/services/route_generator.dart';
 import 'package:untitled/utilities/profile_image_notifier.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  RouteGenerator routeGenerator = RouteGenerator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
+  runApp(
+    MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => ProfileImageNotifier()),
       ],
@@ -30,9 +25,11 @@ class MyApp extends StatelessWidget {
               ),
         ),
         title: "University-BRAU",
+        onGenerateRoute: routeGenerator.generateRoute,
         debugShowCheckedModeBanner: false,
-        home: Handler(), // Handler()
+        initialRoute: Handler.routeName,
+        // home: Handler(), // Handler()
       ),
-    );
-  }
+    ),
+  );
 }

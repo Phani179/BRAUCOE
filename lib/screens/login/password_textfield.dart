@@ -4,13 +4,10 @@ class PasswordTextField extends StatefulWidget
 {
   final Color? fillColor = const Color(0x4DCF9F69);
   final Color? focusedColor = Colors.white;
-  static var passwordController = TextEditingController();
-  static String? hintText;
+  final TextEditingController passwordController;
+  final String? hintText;
 
-  PasswordTextField(String hintText, {super.key})
-  {
-    PasswordTextField.hintText = hintText;
-  }
+  const PasswordTextField(this.hintText, {required this.passwordController,super.key});
 
   @override
   State<PasswordTextField> createState() => _PasswordTextField();
@@ -50,7 +47,7 @@ class _PasswordTextField extends State<PasswordTextField>
           valueListenable: _myFocusNotifier,
           builder: (_, isFocus, child) {
             return TextField(
-                  controller: PasswordTextField.passwordController,
+                  controller: widget.passwordController,
                   focusNode: focusNode,
                   obscureText: _isObscure,
                   cursorColor: Color(0xFF382E1E),
@@ -65,7 +62,7 @@ class _PasswordTextField extends State<PasswordTextField>
                         Icons.lock_outline,
                         color: Color(0xCC382E1E),
                     ),
-                    hintText: PasswordTextField.hintText,
+                    hintText: widget.hintText,
                     hintStyle: const TextStyle(
                       fontFamily: "LibreFranklin-Regular",
                       fontSize: 15,

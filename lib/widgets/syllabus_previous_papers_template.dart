@@ -65,7 +65,7 @@ class SyllabusPreviousPapersTemplate extends StatelessWidget {
                 ),
               ),
             ),
-            SemSelectionDropDown(buttonText: buttonText,parentPath : parentPath),
+            SemSelectionDropDown(buttonText: buttonText,parentPath : parentPath, fromResults: false, prefs: null, ),
           ],
         ),
       ),

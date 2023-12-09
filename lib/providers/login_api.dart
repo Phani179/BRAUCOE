@@ -5,13 +5,6 @@ import 'package:untitled/modal_classes/student_details.dart';
 import 'package:untitled/modal_classes/student_qualifications.dart';
 import 'package:untitled/modal_classes/student_personal_info.dart';
 
-void main() {
-  LoginAPI loginAPI = LoginAPI();
-  loginAPI.getStudent(2081951014);
-  Future.delayed(const Duration(seconds: 5), () {
-  });
-}
-
 class LoginAPI {
   static StudentDetails? studentDetails;
   static StudentPersonalInfo? personalInfo;

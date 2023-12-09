@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/widgets/subject_selection_page.dart';
+
+import '../Screens/results/result_page_handler.dart';
+import '../screens/login/student_login.dart';
 
 class DropDownValidator extends StatefulWidget {
   DropDownValidator(
       { required this.buttonText, required this.selectedYear,
-      required this.firebaseStoragePath,
+      required this.firebaseStoragePath, required this.fromResults, required this.prefs,
       super.key});
 
-  String firebaseStoragePath;
+  String? firebaseStoragePath;
   String? selectedYear;
   String buttonText;
+  bool fromResults;
+  final SharedPreferences? prefs;
 
   @override
   State<DropDownValidator> createState() => _DropDownValidatorState();
@@ -33,16 +39,21 @@ class _DropDownValidatorState extends State<DropDownValidator> {
               borderRadius: BorderRadius.circular(50),
             ),
             backgroundColor: const Color(0xFF00512D),
-            fixedSize: Size(width * 0.7, height * 0.07),
+            fixedSize: Size(width * 0.7, height * 0.05),
           ),
           onPressed: () {
             if (widget.selectedYear != null) {
               print('${widget.firebaseStoragePath}/${widget.selectedYear}');
               Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  widget.fromResults ?  MaterialPageRoute(
+                    builder: (context) => ResultPageHandler(
+                      widget.selectedYear,
+                      widget.prefs?.getInt(StudentLogin.studentId),
+                    ),
+                  ) : MaterialPageRoute(
                       builder: (context) => SubjectSelectionScreen(
-                        titleText : widget.firebaseStoragePath,
+                        titleText : widget.firebaseStoragePath!,
                         selectedYear: widget.selectedYear!,
                             firebaseStoragePath: '${widget.firebaseStoragePath}/${widget.selectedYear}',
                           ),),);
@@ -55,6 +66,7 @@ class _DropDownValidatorState extends State<DropDownValidator> {
           child: Text(
             widget.buttonText,
             style: const TextStyle(
+              color: Colors.white,
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/widgets/drop_down_validator.dart';
 import 'package:untitled/utilities/semester.dart';
 
 class SemSelectionDropDown extends StatefulWidget {
-  const SemSelectionDropDown({required this.buttonText, required this.parentPath,super.key});
+  const SemSelectionDropDown(
+      {required this.buttonText, required this.parentPath, required this.fromResults, required this.prefs, super.key});
+
   final String buttonText;
-  final String parentPath;
+  final String? parentPath;
+  final bool fromResults;
+  final SharedPreferences? prefs;
 
   @override
   State<SemSelectionDropDown> createState() => _SemSelectionDropDownState();
@@ -15,6 +20,7 @@ class _SemSelectionDropDownState extends State<SemSelectionDropDown> {
   // int year = 0;
   String year = '';
   String? selectedYear;
+
   get firbaseStoragePath => widget.parentPath;
 
   @override
@@ -32,7 +38,7 @@ class _SemSelectionDropDownState extends State<SemSelectionDropDown> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: Offset(2, 4),
+                offset: const Offset(2, 4),
               ),
             ],
           ),
@@ -46,13 +52,14 @@ class _SemSelectionDropDownState extends State<SemSelectionDropDown> {
                 borderSide: BorderSide.none,
               ),
             ),
-            dropdownColor: Color(0xFFEFE1D0),
+            dropdownColor: const Color(0xFFEFE1D0),
             hint: const Text(
               'Select Semester',
               style: TextStyle(
-                  color: Color(0xFF382E1E),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
+                color: Color(0xFF382E1E),
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             // value: year == 0 ? null : 'Semester - $year',
             value: year.isEmpty ? null : year,
@@ -80,10 +87,9 @@ class _SemSelectionDropDownState extends State<SemSelectionDropDown> {
                         child: Text(
                           SemesterSyllabus().formattedSemesterName(i),
                           style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.underline
-                          ),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline),
                         ),
                       ))
             ],
@@ -95,7 +101,9 @@ class _SemSelectionDropDownState extends State<SemSelectionDropDown> {
         DropDownValidator(
           buttonText: widget.buttonText,
           selectedYear: selectedYear,
-          firebaseStoragePath : firbaseStoragePath,
+          firebaseStoragePath: firbaseStoragePath,
+          fromResults: widget.fromResults,
+          prefs: widget.prefs,
         ),
       ],
     );

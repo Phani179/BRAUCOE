@@ -1,49 +1,163 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/login/screen2_image_styling.dart';
-import 'package:untitled/screens/login/screen2_text_styling.dart';
+import 'package:untitled/utilities/images.dart';
 
 import 'screen2_button_styling.dart';
 import 'student_login.dart';
 
-class Screen2 extends StatelessWidget
-{
+class Screen2 extends StatelessWidget {
+  static const String routeName = '/second-screen';
+
   const Screen2({super.key});
+
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Stack(
-          children: <Widget>[
-            // BRAULogo Background Image.
-            Screen2ImageStyling(leftInPositioned : 45, rightInPositioned : 45, topInPositioned : 50, heightInSizedBox : 225, widthInSizedBox : 225, imageURL : "assets/images/BRAULogoBG.png"),
-            //BRAULogo
-            Screen2ImageStyling(leftInPositioned : 90, rightInPositioned : 90, topInPositioned : 82, heightInSizedBox : 160, widthInSizedBox : 160, imageURL : "assets/images/BRAULogo.png"),
-            // NAACB
-            Screen2ImageStyling(leftInPositioned : 20, rightInPositioned : 300, topInPositioned : 320, heightInSizedBox : 100, widthInSizedBox : 100, imageURL : "assets/images/NAACB.png"),
-            // ISO
-            Screen2ImageStyling(leftInPositioned : 40, rightInPositioned : 150, topInPositioned : 346, heightInSizedBox : 46, widthInSizedBox : 45, imageURL : "assets/images/ISO.png"),
-            //Sraddavan Labithey jananam
-            Screen2ImageStyling(leftInPositioned : 70, rightInPositioned : 25, topInPositioned : 346, heightInSizedBox : 50, widthInSizedBox : 50, imageURL : "assets/images/SraddavanLogo.png"),
-            //SwachBharat
-            Screen2ImageStyling(leftInPositioned : 280, rightInPositioned : 20, topInPositioned : 330, heightInSizedBox : 75, widthInSizedBox : 75, imageURL : "assets/images/SwachBharat.png"),
-            //Dr. B. R. AMBEDKAR UNIVERSITY
-            Screen2TextStyling(topInPositioned : 290, leftInPositioned : 30, text : "Dr. B. R. AMBEDKAR UNIVERSITY", fontFamily: "LibreFranklin-Bold" ,fontWeight : FontWeight.w700, fontSize : 20),
-            //College of Engineering,
-            Screen2TextStyling(topInPositioned : 314, leftInPositioned : 50, text : "College of Engineering, ", fontFamily: "LibreFranklin-SemiBold" , fontWeight : FontWeight.w600, fontSize : 18),
-            //Srikakulam
-            Screen2TextStyling(topInPositioned : 317, leftInPositioned : 250, text : "Srikakulam", fontFamily: "LibreFranklin-Regular" , fontWeight : FontWeight.w500, fontSize : 15),
-            //Welcome!
-            Screen2TextStyling(topInPositioned : 415, leftInPositioned : 100, text : "Welcome!", fontFamily: "LibreFranklin-SemiBold" , fontWeight : FontWeight.w600, fontSize : 40),
-            //Continue as:
-            Screen2TextStyling(topInPositioned : 480, leftInPositioned : 10, text : "Continue as:", fontFamily: "LibreFranklin-Medium" , fontWeight : FontWeight.w500, fontSize : 20),
-            //Student Button
-            Screen2ButtonStyling(top : 530, text: "Student", onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => StudentLogin()));
-            },),  // 590
-            //Admin Button
-            // Screen2ButtonStyling(top : 625, text: "Admin", onPressed: null),     // 690
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 200,
+                      width: 200,
+                      child: Image.asset(
+                        Images.bRAULogoBG,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 150,
+                      width: 150,
+                      child: Image.asset(Images.bRAULogo),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20, right: 20),
+              child: Column(
+                children: [
+                  const Text(
+                    'Dr. B. R. AMBEDKAR UNIVERSITY',
+                    style: TextStyle(
+                      fontFamily: 'LibreFranklin-Bold',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 22,
+                      color: Color(0xFF382E1E),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'College of Engineering, ',
+                        style: TextStyle(
+                          fontFamily: 'LibreFranklin-SemiBold',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          color: Color(0xFF382E1E),
+                        ),
+                      ),
+                      Text(
+                        'Srikakulam',
+                        style: TextStyle(
+                          fontFamily: 'LibreFranklin-Regular',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 17,
+                          color: Color(0xFF382E1E),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                            height: 70,
+                            width: 70,
+                            child: Image.asset(Images.nAACB)),
+                        SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Image.asset(Images.iSO)),
+                        SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Image.asset(Images.sraddavanLogo)),
+                        SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset(Images.swachBharat)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    'Welcome!',
+                    style: TextStyle(
+                      fontFamily: 'LibreFranklin-SemiBold',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 40,
+                      color: Color(0xFF382E1E),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Continue as:',
+                        style: TextStyle(
+                          fontFamily: 'LibreFranklin-Medium',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          color: Color(0xFF382E1E),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Screen2ButtonStyling(
+                    text: "Student",
+                    onPressed: () {
+                      Navigator.pushNamed(context, StudentLogin.routeName);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => StudentLogin(),
+                      //   ),
+                      // );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
+      ),
     );
   }
 }

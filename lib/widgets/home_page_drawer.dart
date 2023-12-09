@@ -12,8 +12,7 @@ class HomePageDrawer extends StatelessWidget {
   GlobalKey<ScaffoldState> scaffoldState;
 
   void _goToLoginPage(context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (ctx) => StudentLogin()));
+    Navigator.popUntil(context, (route) => route.settings.name == StudentLogin.routeName);
   }
 
   void _setSharedPrefs() async {
@@ -39,8 +38,8 @@ class HomePageDrawer extends StatelessWidget {
                   height: height * 0.01,
                 ),
                 GestureDetector(
-                  child: const Icon(Icons.arrow_back_outlined),
                   onTap: scaffoldState.currentState?.closeDrawer,
+                  child: const Icon(Icons.arrow_back_outlined),
                 ),
                 SizedBox(
                   height: height * 0.02,
@@ -111,8 +110,7 @@ class HomePageDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Help()));
+                        Navigator.pushNamed(context, HelpScreen.routeName);
                       },
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled/screens/class_details/class_details.dart';
 import 'package:untitled/screens/fee_details/fee_details.dart';
 import 'package:untitled/screens/previous_papers/previous_papers_page.dart';
 import 'package:untitled/screens/syllabus/syllabus_page.dart';
@@ -10,12 +11,14 @@ import 'package:untitled/utilities/customized_paint.dart';
 import 'package:untitled/utilities/home_page_item.dart';
 import 'package:untitled/utilities/profile_image_notifier.dart';
 import 'package:untitled/widgets/home_page_drawer.dart';
-import '../../providers/login_api.dart';
-import '../../utilities/images.dart';
-import '../results/result_home_page.dart';
+import 'package:untitled/providers/login_api.dart';
+import 'package:untitled/utilities/images.dart';
+import '../results/result_home_screen.dart';
 import 'carosuel_sliding.dart';
 
 class HomePage extends StatefulWidget {
+  static const String routeName = '/home-page';
+
   HomePage({super.key});
 
   @override
@@ -23,7 +26,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
-
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
 
   @override
@@ -80,7 +82,7 @@ class _HomePage extends State<HomePage> {
                                       child: CircleAvatar(
                                         radius: 25,
                                         backgroundImage: AssetImage(
-                                            "assets/images/ProfileImage.png"),
+                                            Images.profileImage),
                                       ),
                                     ),
                         ],
@@ -124,17 +126,17 @@ class _HomePage extends State<HomePage> {
                             fontSize: 16, fontFamily: "LibreFranklin-Medium")),
                   ],
                 ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.067,
-                    ),
-                    const Icon(
-                      Icons.notification_add,
-                      size: 33,
-                    ),
-                  ],
-                ),
+                // Column(
+                //   children: [
+                //     SizedBox(
+                //       height: MediaQuery.of(context).size.height * 0.067,
+                //     ),
+                //     const Icon(
+                //       Icons.notification_add,
+                //       size: 33,
+                //     ),
+                //   ],
+                // ),
               ],
             ),
             SizedBox(
@@ -149,33 +151,44 @@ class _HomePage extends State<HomePage> {
               child: const SingleChildScrollView(
                 child: Column(
                   children: [
+                    // Class Details
+                    HomePageItem(
+                      title: 'Class Details',
+                      image: Images.classDetails,
+                      leftPadding: 10.0,
+                      nextPage: ClassDetailsScreen(),
+                    ),
                     // Results
                     HomePageItem(
-                        title: 'Results',
-                        image: Images.result,
-                        leftPadding: 30.0,
-                        nextPage: ResultHomePage()),
+                      title: 'Results',
+                      image: Images.result,
+                      leftPadding: 30.0,
+                      nextPage: ResultHomeScreen(),
+                    ),
 
                     // Syllabus
                     HomePageItem(
-                        title: 'Syllabus',
-                        image: Images.syllabus,
-                        leftPadding: 42.0,
-                        nextPage: SyllabusPage()),
+                      title: 'Syllabus',
+                      image: Images.syllabus,
+                      leftPadding: 42.0,
+                      nextPage: SyllabusPage(),
+                    ),
 
                     // Previous Papers
                     HomePageItem(
-                        title: 'Previous Papers',
-                        image: Images.previousPapers,
-                        leftPadding: 34.0,
-                        nextPage: PreviousPapersScreen()),
+                      title: 'Previous Papers',
+                      image: Images.previousPapers,
+                      leftPadding: 34.0,
+                      nextPage: PreviousPapersScreen(),
+                    ),
 
                     // Fees
                     HomePageItem(
-                        title: 'Fee Details',
-                        image: Images.fees,
-                        leftPadding: 34.0,
-                        nextPage: FeeDetailsScreen()),
+                      title: 'Fee Details',
+                      image: Images.fees,
+                      leftPadding: 34.0,
+                      nextPage: FeeDetailsScreen(),
+                    ),
 
                     // Library
                     // HomePageItem(
@@ -190,62 +203,50 @@ class _HomePage extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          child: Container(
-            decoration: const BoxDecoration(),
-            child: const SizedBox(
-              height: 70,
-              child: GNav(
-                  backgroundColor: Colors.white,
-                  activeColor: Color(0xff00512D),
-                  // Colors.green.shade900,
-                  tabBackgroundColor: Color(0xFF9DCCB7),
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  gap: 8,
-                  padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
-                  tabs: [
-                    GButton(
-                      icon: Icons.home,
-                      iconColor: Color(0xFF382E1E),
-                      iconSize: 25,
-                      text: 'Home',
-                      textStyle: TextStyle(
-                          fontFamily: "LibreFranklin-Medium",
-                          color: Color(0xFF00512D)),
-                      textSize: 25,
-                      onPressed: null,
-                    ),
-                    // GButton(
-                    //   icon: Icons.search,
-                    //   iconColor: Color(0xFF382E1E),
-                    //   iconSize: 25,
-                    //   text: 'Search',
-                    //   textStyle: TextStyle(
-                    //       fontFamily: "LibreFranklin-Medium",
-                    //       color: Color(0xFF00512D)),
-                    //   textSize: 25,
-                    //   onPressed: null,
-                    // ),
-                    // GButton(
-                    //   icon: Icons.settings,
-                    //   iconColor: Color(0xFF382E1E),
-                    //   iconSize: 25,
-                    //   text: 'Settings',
-                    //   textStyle: TextStyle(
-                    //       fontFamily: "LibreFranklin-Medium",
-                    //       color: Color(0xFF00512D)),
-                    //   textSize: 25,
-                    //   onPressed: null,
-                    // ),
-                  ]),
+      bottomNavigationBar: const SizedBox(
+        height: 70,
+        child: GNav(
+          backgroundColor: Colors.white,
+          activeColor: Color(0xff00512D),
+          // Colors.green.shade900,
+          tabBackgroundColor: Color(0xFF9DCCB7),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          gap: 8,
+          padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+          tabs: [
+            GButton(
+              icon: Icons.home,
+              iconColor: Color(0xFF382E1E),
+              iconSize: 25,
+              text: 'Home',
+              textStyle: TextStyle(
+                  fontFamily: "LibreFranklin-Medium", color: Color(0xFF00512D)),
+              textSize: 25,
+              onPressed: null,
             ),
-          ),
+            // GButton(
+            //   icon: Icons.search,
+            //   iconColor: Color(0xFF382E1E),
+            //   iconSize: 25,
+            //   text: 'Search',
+            //   textStyle: TextStyle(
+            //       fontFamily: "LibreFranklin-Medium",
+            //       color: Color(0xFF00512D)),
+            //   textSize: 25,
+            //   onPressed: null,
+            // ),
+            // GButton(
+            //   icon: Icons.settings,
+            //   iconColor: Color(0xFF382E1E),
+            //   iconSize: 25,
+            //   text: 'Settings',
+            //   textStyle: TextStyle(
+            //       fontFamily: "LibreFranklin-Medium",
+            //       color: Color(0xFF00512D)),
+            //   textSize: 25,
+            //   onPressed: null,
+            // ),
+          ],
         ),
       ),
     );

@@ -8,10 +8,12 @@ import 'package:pdf/widgets.dart' as pw;
 
 import 'package:untitled/providers/login_api.dart';
 import 'package:untitled/providers/result_api.dart';
-import 'result_home_page.dart';
+import 'result_home_screen.dart';
 
 class ResultTable extends StatefulWidget {
-  const ResultTable({super.key});
+
+  final String year;
+  const ResultTable({required this.year, super.key});
 
   @override
   State<ResultTable> createState() => _ResultTable();
@@ -29,17 +31,12 @@ class _ResultTable extends State<ResultTable> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 15,
-              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  GestureDetector(
-                    child: const Icon(Icons.arrow_back_sharp),
-                    onTap: ()
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_sharp),
+                    onPressed: ()
                     {
                       Navigator.pop(context);
                     },
@@ -58,7 +55,7 @@ class _ResultTable extends State<ResultTable> {
                           const SizedBox(
                             width: 70,
                           ),
-                          Text("${ResultHomePage.selectedValue} Results",
+                          Text("${widget.year} Results",
                             style: const TextStyle(fontFamily: "LibreFranklin-SemiBold", fontSize: 28),
                           ),
                         ],
@@ -301,7 +298,7 @@ void savePDF(Uint8List image) async
   var savedPDF = await pdf.save();
   print(savedPDF);
 
-  String? filePath = await FileSaver.instance.saveAs(name: "${ResultHomePage.selectedValue}",bytes: savedPDF, ext: 'pdf', mimeType: MimeType.pdf);
+  String? filePath = await FileSaver.instance.saveAs(name: widget.year,bytes: savedPDF, ext: 'pdf', mimeType: MimeType.pdf);
   print(filePath);
 }
 }

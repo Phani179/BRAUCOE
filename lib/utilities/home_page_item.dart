@@ -40,25 +40,27 @@ class HomePageItem extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
+
                 child: Image.asset(
                   height: height * 0.1,
                   image,
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(
-                width: 22,
-              ),
+              const Spacer(),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(title,
                       style: const TextStyle(
-                          fontFamily: "LibreFranklin-Bold",
+                          fontFamily: "LibreFranklin-Regular",
+                          fontWeight: FontWeight.w900,
                           fontSize: 25,
                           color: Color(0xFF382E1E))),
                 ],
               ),
+              const Spacer(),
             ],
           )),
       onTap: () {

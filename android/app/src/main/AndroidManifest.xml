@@ -8,7 +8,7 @@
    <application
         android:label="BRAUCOE"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_logo"
        >
        <!-- Required to fetch data from the internet. -->
         <activity

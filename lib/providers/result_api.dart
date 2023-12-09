@@ -20,14 +20,14 @@ class ResultAPI
   static double SGPA = 0;
   static List studentResultDetails = [];
   Map<String, int> semesterDetails = {
-    "Semester - 1" : 6,
-    "Semester - 2" : 10,
-    "Semester - 3" : 10,
-    "Semester - 4" : 9,
-    "Semester - 5" : 9,
-    "Semester - 6" : 0,
-    "Semester - 7" : 4,
-    "Semester - 8" : 3,
+    "semester_1" : 6,
+    "semester_2" : 10,
+    "semester_3" : 10,
+    "semester_4" : 9,
+    "semester_5" : 9,
+    "semester_6" : 8,
+    "semester_7" : 4,
+    "semester_8" : 3,
   };
   Future getResult(var semester,var reg_no) async
   {
@@ -48,27 +48,44 @@ class ResultAPI
     print(response);
     print("Request Sent");
     var body = jsonDecode(response.body);
-    print(body);
     if(body == null)
-      {
-        return "";
-      }
-    print("Body Parsed");
+    {
+      return "";
+    }
     SGPA = body["sgpa"];
     // Student Result
     int? noOfSubjects = semesterDetails[semester];
     for(var i = 1; i <= noOfSubjects!; i++)
-      {
-        resultInfo = ResultInfo();
-        resultInfo.setPapName = body["pap${i}n"];
-        resultInfo.setPapGR = body["pap${i}gr"];
-        resultInfo.setPapGRP = body["pap${i}grp"];
-        result.add(resultInfo);
-      }
-    print(DateTime.now());
+    {
+      resultInfo = ResultInfo();
+      resultInfo.setPapName = body["pap${i}n"];
+      resultInfo.setPapGR = body["pap${i}gr"];
+      resultInfo.setPapGRP = body["pap${i}grp"];
+      result.add(resultInfo);
+    }
     print("Results Fetched");
-    print(result);
+    return body;
+    // print(body);
+    // if(body == null)
+    //   {
+    //     return "";
+    //   }
+    // SGPA = body["sgpa"];
+    // // Student Result
+    // int? noOfSubjects = semesterDetails[semester];
+    // for(var i = 1; i <= noOfSubjects!; i++)
+    // {
+    //   resultInfo = ResultInfo();
+    //   resultInfo.setPapName = body["pap${i}n"];
+    //   resultInfo.setPapGR = body["pap${i}gr"];
+    //   resultInfo.setPapGRP = body["pap${i}grp"];
+    //   result.add(resultInfo);
+    // }
+    // print("Results Fetched");
+    // print(result);
+    //
+    // return result;
+    // print("Body Parsed");
 
-    return result;
   }
 }
