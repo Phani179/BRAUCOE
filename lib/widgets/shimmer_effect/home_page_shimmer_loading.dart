@@ -54,6 +54,8 @@ class _HomePageShimmerLoadingState extends State<HomePageShimmerLoading> {
                         Row(
                           children: [
                             Shimmer.fromColors(
+                                baseColor: Colors.grey.shade200,
+                                highlightColor: Colors.grey.shade300,
                                 child: Container(
                                   height: 20,
                                   width: MediaQuery.of(context).size.width * 0.65,
@@ -61,9 +63,7 @@ class _HomePageShimmerLoadingState extends State<HomePageShimmerLoading> {
                                     borderRadius: BorderRadius.circular(20),
                                     color: Colors.black,
                                   ),
-                                ),
-                                baseColor: Colors.grey.shade200,
-                                highlightColor: Colors.grey.shade300
+                                )
                             ),
                             // Text(, style: TextStyle(fontSize: 18, fontFamily: "LibreFranklin-Regular", fontWeight: FontWeight.w500),),
                           ],

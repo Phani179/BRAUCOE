@@ -63,28 +63,28 @@ class _HomePage extends State<HomePage> {
                           ),
                           profileImageNotifier.imageFile != null
                               ? SizedBox(
-                                  child: CircleAvatar(
-                                    radius: 25,
-                                    backgroundImage: FileImage(
-                                        profileImageNotifier.imageFile!),
-                                  ),
-                                )
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundImage: FileImage(
+                                  profileImageNotifier.imageFile!),
+                            ),
+                          )
                               : LoginAPI.personalInfo?.passportSizePhoto != null
-                                  ? SizedBox(
-                                      child: CircleAvatar(
-                                        radius: 25,
-                                        backgroundImage: MemoryImage(
-                                            base64Decode(LoginAPI.personalInfo
-                                                ?.passportSizePhoto)),
-                                      ),
-                                    )
-                                  : const SizedBox(
-                                      child: CircleAvatar(
-                                        radius: 25,
-                                        backgroundImage: AssetImage(
-                                            Images.profileImage),
-                                      ),
-                                    ),
+                              ? SizedBox(
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundImage: MemoryImage(
+                                  base64Decode(LoginAPI.personalInfo
+                                      ?.passportSizePhoto)),
+                            ),
+                          )
+                              : const SizedBox(
+                            child: CircleAvatar(
+                              radius: 25,
+                              backgroundImage: AssetImage(
+                                  Images.profileImage),
+                            ),
+                          ),
                         ],
                       ),
                       onTap: () {
@@ -204,7 +204,7 @@ class _HomePage extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: const SizedBox(
-        height: 70,
+        height: 60,
         child: GNav(
           backgroundColor: Colors.white,
           activeColor: Color(0xff00512D),

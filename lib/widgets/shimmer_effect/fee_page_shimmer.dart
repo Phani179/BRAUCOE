@@ -117,7 +117,7 @@ class FeePageShimmerLoading extends StatelessWidget {
                         highlightColor: Colors.grey.shade300,
                         child: const Text(
                           'Total Due : 00,000',
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Color(0xFFCF0000),
                             fontSize: 20,
                             fontFamily: 'LibreFranklin-Regular',

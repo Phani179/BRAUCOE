@@ -111,15 +111,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                               color: Color(0xFF382E1E)),
                         ),
                         const Text(
-                          "Congratulations, you can enjoy",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "LibreFranklin-Regular",
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF382E1E)),
-                        ),
-                        const Text(
-                          "the services now!",
+                          "Congratulations, you can enjoy the services now!",
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: "LibreFranklin-Regular",

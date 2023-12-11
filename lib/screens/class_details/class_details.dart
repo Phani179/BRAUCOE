@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/modal_classes/student_card.dart';
 import 'package:untitled/providers/class_details_api.dart';
+import 'package:untitled/widgets/shimmer_effect/class_details_shimmer_loading.dart';
 
 class ClassDetailsScreen extends StatefulWidget {
   static const String routeName = '/class-details';
@@ -48,7 +49,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const ClassDetailsShimmerLoading();
                   }
                   if (snapshot.hasData) {
                     int length = classDetailsAPI.allStudentsList.length;
@@ -67,7 +68,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                           elevation: 2,
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.9,
-                            height: 80,
+                            height: 100,
                             child: Row(
                               children: [
                                 const SizedBox(
