@@ -3,16 +3,16 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/screens/class_details/class_details.dart';
-import 'package:untitled/screens/fee_details/fee_details.dart';
-import 'package:untitled/screens/previous_papers/previous_papers_page.dart';
-import 'package:untitled/screens/syllabus/syllabus_page.dart';
-import 'package:untitled/utilities/customized_paint.dart';
-import 'package:untitled/utilities/home_page_item.dart';
-import 'package:untitled/utilities/profile_image_notifier.dart';
-import 'package:untitled/widgets/home_page_drawer.dart';
-import 'package:untitled/providers/login_api.dart';
-import 'package:untitled/utilities/images.dart';
+import 'package:braucoe/screens/class_details/class_details.dart';
+import 'package:braucoe/screens/fee_details/fee_details.dart';
+import 'package:braucoe/screens/previous_papers/previous_papers_page.dart';
+import 'package:braucoe/screens/syllabus/syllabus_page.dart';
+import 'package:braucoe/utilities/customized_paint.dart';
+import 'package:braucoe/utilities/home_page_item.dart';
+import 'package:braucoe/utilities/profile_image_notifier.dart';
+import 'package:braucoe/widgets/home_page_drawer.dart';
+import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/utilities/images.dart';
 import '../results/result_home_screen.dart';
 import 'carosuel_sliding.dart';
 
@@ -158,6 +158,7 @@ class _HomePage extends State<HomePage> {
                       leftPadding: 10.0,
                       nextPage: ClassDetailsScreen(),
                     ),
+
                     // Results
                     HomePageItem(
                       title: 'Results',
@@ -167,12 +168,12 @@ class _HomePage extends State<HomePage> {
                     ),
 
                     // Syllabus
-                    HomePageItem(
-                      title: 'Syllabus',
-                      image: Images.syllabus,
-                      leftPadding: 42.0,
-                      nextPage: SyllabusPage(),
-                    ),
+                    // HomePageItem(
+                    //   title: 'Syllabus',
+                    //   image: Images.syllabus,
+                    //   leftPadding: 42.0,
+                    //   nextPage: SyllabusPage(),
+                    // ),
 
                     // Previous Papers
                     HomePageItem(
@@ -183,12 +184,12 @@ class _HomePage extends State<HomePage> {
                     ),
 
                     // Fees
-                    HomePageItem(
-                      title: 'Fee Details',
-                      image: Images.fees,
-                      leftPadding: 34.0,
-                      nextPage: FeeDetailsScreen(),
-                    ),
+                    // HomePageItem(
+                    //   title: 'Fee Details',
+                    //   image: Images.fees,
+                    //   leftPadding: 34.0,
+                    //   nextPage: FeeDetailsScreen(),
+                    // ),
 
                     // Library
                     // HomePageItem(

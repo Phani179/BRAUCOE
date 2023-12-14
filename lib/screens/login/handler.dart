@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/providers/login_api.dart';
-import 'package:untitled/widgets/shimmer_effect/home_page_shimmer_loading.dart';
-import 'package:untitled/screens/login/student_login.dart';
+import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/widgets/shimmer_effect/home_page_shimmer_loading.dart';
+import 'package:braucoe/screens/login/student_login.dart';
 import 'logo_screen.dart';
 
 class Handler extends StatefulWidget {
@@ -19,6 +19,7 @@ class _Handler extends State<Handler> {
 
   @override
   Widget build(BuildContext context) {
+    print('Handler');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // body: HomePage()
@@ -35,7 +36,8 @@ class _Handler extends State<Handler> {
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
                       if (snapshot.hasData) {
-                        return LogoScreen(isLoggedIn: true);
+                        LogoScreen.isLoggedIn = true;
+                        return LogoScreen();
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
                         // Home Page Rendering.
@@ -46,14 +48,12 @@ class _Handler extends State<Handler> {
                     },
                   );
                 } else {
-                  return const LogoScreen(
-                    isLoggedIn: false,
-                  );
+                  LogoScreen.isLoggedIn = false;
+                  return const LogoScreen();
                 }
               } else {
-                return const LogoScreen(
-                  isLoggedIn: false,
-                );
+                LogoScreen.isLoggedIn = false;
+                return const LogoScreen();
               }
             }
             // SplashScreen
@@ -68,7 +68,7 @@ class _Handler extends State<Handler> {
     print("Step 3");
     isLoggedIn = prefs.getBool(StudentLogin.isLoggedIn);
     print("${prefs.getBool(StudentLogin.isLoggedIn)}");
-    Handler.loginStatus = isLoggedIn;
+    Handler.loginStatus = isLoggedIn ?? false;
     print("Step 4");
     return true;
   }

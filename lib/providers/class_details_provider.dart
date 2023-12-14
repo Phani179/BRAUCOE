@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:untitled/modal_classes/student_card.dart';
+import 'package:braucoe/modal_classes/student_card.dart';
 
 void main() async {
   ClassDetailsAPI classDetailsAPI = ClassDetailsAPI();

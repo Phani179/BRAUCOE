@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:untitled/modal_classes/fee_details.dart';
+import 'package:braucoe/modal_classes/fee_details.dart';
 
 void main()
 {

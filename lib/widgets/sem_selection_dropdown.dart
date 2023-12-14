@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/widgets/drop_down_validator.dart';
-import 'package:untitled/utilities/semester.dart';
+import 'package:braucoe/widgets/drop_down_validator.dart';
+import 'package:braucoe/utilities/semester.dart';
 
 class SemSelectionDropDown extends StatefulWidget {
   const SemSelectionDropDown(

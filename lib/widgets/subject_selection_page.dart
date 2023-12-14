@@ -1,11 +1,11 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled/widgets/subject_check_box.dart';
-import 'package:untitled/services/firebase_storage_services.dart';
-import 'package:untitled/utilities/images.dart';
-import 'package:untitled/utilities/local_file_saver.dart';
-import 'package:untitled/utilities/semester.dart';
+import 'package:braucoe/widgets/subject_check_box.dart';
+import 'package:braucoe/services/firebase_storage_services.dart';
+import 'package:braucoe/utilities/images.dart';
+import 'package:braucoe/utilities/local_file_saver.dart';
+import 'package:braucoe/utilities/semester.dart';
 
 class SubjectSelectionScreen extends StatefulWidget {
   SubjectSelectionScreen(
@@ -130,6 +130,7 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
           onPressed: _downloadFiles,
           child: const Icon(
             Icons.file_download_outlined,
+            color: Colors.white,
             size: 35,
           ),
         ),

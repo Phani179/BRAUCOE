@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/modal_classes/student_card.dart';
-import 'package:untitled/providers/class_details_api.dart';
-import 'package:untitled/widgets/shimmer_effect/class_details_shimmer_loading.dart';
+import 'package:braucoe/modal_classes/student_card.dart';
+import 'package:braucoe/providers/class_details_provider.dart';
+import 'package:braucoe/widgets/shimmer_effect/class_details_shimmer_loading.dart';
 
 class ClassDetailsScreen extends StatefulWidget {
   static const String routeName = '/class-details';

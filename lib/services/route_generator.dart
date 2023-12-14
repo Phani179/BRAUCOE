@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/class_details/class_details.dart';
-import 'package:untitled/screens/forgot_password/forgot_password.dart';
-import 'package:untitled/screens/forgot_password/otp_page.dart';
-import 'package:untitled/screens/forgot_password/reset_password_page.dart';
-import 'package:untitled/screens/help/help.dart';
-import 'package:untitled/screens/home_page/home_page.dart';
-import 'package:untitled/screens/login/screen2.dart';
-import 'package:untitled/screens/login/student_login.dart';
-import 'package:untitled/screens/results/result_home_screen.dart';
+import 'package:braucoe/screens/class_details/class_details.dart';
+import 'package:braucoe/screens/forgot_password/forgot_password.dart';
+import 'package:braucoe/screens/forgot_password/otp_page.dart';
+import 'package:braucoe/screens/forgot_password/reset_password_page.dart';
+import 'package:braucoe/screens/help/help.dart';
+import 'package:braucoe/screens/home_page/home_page.dart';
+import 'package:braucoe/screens/login/screen2.dart';
+import 'package:braucoe/screens/login/student_login.dart';
+import 'package:braucoe/screens/results/result_home_screen.dart';
 import '../screens/login/handler.dart';
 
 

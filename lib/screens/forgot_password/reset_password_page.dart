@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/providers/renew_password_api.dart';
-import 'package:untitled/screens/login/password_textfield.dart';
-import 'package:untitled/screens/login/student_login.dart';
-import 'package:untitled/utilities/images.dart';
-import 'package:untitled/widgets/shimmer_effect/mail_and_reset_pwd_shimmer_loading.dart';
+import 'package:braucoe/providers/renew_password_provider.dart';
+import 'package:braucoe/screens/login/password_textfield.dart';
+import 'package:braucoe/screens/login/student_login.dart';
+import 'package:braucoe/utilities/images.dart';
+import 'package:braucoe/widgets/shimmer_effect/mail_and_reset_pwd_shimmer_loading.dart';
 import '../login/normal_textfield.dart';
 
 class ResetPassword extends StatefulWidget {

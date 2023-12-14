@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/home_page/home_page.dart';
-import 'package:untitled/screens/login/screen2.dart';
+import 'package:braucoe/screens/home_page/home_page.dart';
+import 'package:braucoe/screens/login/screen2.dart';
 
 import '../../utilities/images.dart';
 
-class LogoScreen extends StatelessWidget {
-  const LogoScreen({ required this.isLoggedIn, super.key});
-  final bool isLoggedIn;
+class LogoScreen extends StatefulWidget {
+  const LogoScreen({super.key});
+  static bool? isLoggedIn;
+
+  @override
+  State<LogoScreen> createState() => _LogoScreenState();
+}
+
+class _LogoScreenState extends State<LogoScreen> {
   @override
   Widget build(BuildContext context) {
+    print('Logo Screen - ${LogoScreen.isLoggedIn}');
     return SafeArea(
       child: Column(
         children: [
@@ -97,7 +104,7 @@ class LogoScreen extends StatelessWidget {
                 // padding: const EdgeInsets.fromLTRB(76, 18, 76, 17),
               ),
               onPressed: () {
-                isLoggedIn ? Navigator.pushNamed( context, HomePage.routeName) : Navigator.of(context).pushNamed(Screen2.routeName);
+                LogoScreen.isLoggedIn! ? Navigator.pushNamed( context, HomePage.routeName) : Navigator.of(context).pushNamed(Screen2.routeName);
                 // Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => const Screen2()));
               },
               child: SizedBox(

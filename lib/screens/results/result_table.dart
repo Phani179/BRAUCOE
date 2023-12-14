@@ -6,8 +6,8 @@ import 'package:screenshot/screenshot.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-import 'package:untitled/providers/login_api.dart';
-import 'package:untitled/providers/result_api.dart';
+import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/providers/result_provider.dart';
 import 'result_home_screen.dart';
 
 class ResultTable extends StatefulWidget {
@@ -256,7 +256,7 @@ class _ResultTable extends State<ResultTable> {
           height: 65,
           width: 67,
           decoration: BoxDecoration(
-            color: Color(0xFF00512D),
+            color: const Color(0xFF00512D),
             borderRadius: BorderRadius.circular(90),
           ),
           child: const Icon(Icons.file_download_outlined, color: Color(0xFFFCFCFC), size: 37,),

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:untitled/modal_classes/student_details.dart';
-import 'package:untitled/modal_classes/student_qualifications.dart';
-import 'package:untitled/modal_classes/student_personal_info.dart';
+import 'package:braucoe/modal_classes/student_details.dart';
+import 'package:braucoe/modal_classes/student_qualifications.dart';
+import 'package:braucoe/modal_classes/student_personal_info.dart';
 
 class LoginAPI {
   static StudentDetails? studentDetails;
@@ -12,13 +12,6 @@ class LoginAPI {
   Map<dynamic, dynamic>? users = {};
 
   Future<dynamic> getStudent(var studentId) async {
-    // print("Login API Called");
-    // if(users != null && users?[studentDetails?.studentId] != null)
-    //   {
-    //     print("Same User");
-    //     return users?[studentDetails?.studentId];
-    //   }
-    // print("New User");
     final url =
         'http://braucoeapi-production.up.railway.app/student/$studentId';
     final uri = Uri.parse(url);

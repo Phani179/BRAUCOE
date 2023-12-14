@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/widgets/syllabus_previous_papers_template.dart';
+import 'package:braucoe/widgets/syllabus_previous_papers_template.dart';
 import '../../utilities/images.dart';
 
 class SyllabusPage extends StatelessWidget {

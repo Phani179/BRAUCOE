@@ -1,4 +1,4 @@
-name: untitled
+name: braucoe
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -54,6 +54,10 @@ dependencies:
   firebase_core: ^2.21.0
   provider: ^6.0.5
   go_router: ^12.1.3
+  crypto: ^3.0.3
+  dcdg: ^4.1.0
+  dio: ^5.4.0
+  device_preview: ^1.1.0
 
 
 dev_dependencies:

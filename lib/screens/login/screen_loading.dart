@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/providers/login_api.dart';
-import 'package:untitled/screens/home_page/home_page.dart';
-import 'package:untitled/screens/login/student_login.dart';
-import 'package:untitled/utilities/images.dart';
+import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/providers/renew_password_provider.dart';
+import 'package:braucoe/screens/home_page/home_page.dart';
+import 'package:braucoe/screens/login/student_login.dart';
+import 'package:braucoe/utilities/images.dart';
 import '../../widgets/shimmer_effect/login_shimmer.dart';
 
 class ScreenLoading extends StatefulWidget {
@@ -60,11 +61,12 @@ class _ScreenLoadingState extends State<ScreenLoading> {
     return FutureBuilder(
       future: loginAPI.getStudent(studentId),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        HashPassword hashPassword = HashPassword();
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoginShimmerLoading();
         } else if (snapshot.hasData) {
           print("Data Decoded");
-          if (password == LoginAPI.personalInfo?.password) {
+          if (hashPassword.hashPassword(password) == LoginAPI.personalInfo?.password) {
             widget.textEditingController.clear();
             widget.passwordTextFieldController.clear();
             isSuccess = true;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/screens/help/help.dart';
-import 'package:untitled/screens/login/student_login.dart';
-import 'package:untitled/widgets/shimmer_effect/mail_and_reset_pwd_shimmer_loading.dart';
+import 'package:braucoe/screens/help/help.dart';
+import 'package:braucoe/screens/login/student_login.dart';
+import 'package:braucoe/widgets/shimmer_effect/mail_and_reset_pwd_shimmer_loading.dart';
 
-import '../../providers/login_api.dart';
-import '../../providers/mail_api.dart';
+import '../../providers/login_provider.dart';
+import '../../providers/mail_provider.dart';
 
 class MailSendingPage extends StatelessWidget {
   MailSendingPage(this.subject, this.message, {super.key});

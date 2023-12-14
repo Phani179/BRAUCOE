@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/utilities/images.dart';
+import 'package:braucoe/utilities/images.dart';
 
 import 'screen2_button_styling.dart';
 import 'student_login.dart';

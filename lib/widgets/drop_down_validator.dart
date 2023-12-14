@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/widgets/subject_selection_page.dart';
+import 'package:braucoe/widgets/subject_selection_page.dart';
 
 import '../Screens/results/result_page_handler.dart';
 import '../screens/login/student_login.dart';

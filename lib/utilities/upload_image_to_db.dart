@@ -1,6 +1,6 @@
-import 'package:untitled/utilities/profile_image_notifier.dart';
+import 'package:braucoe/utilities/profile_image_notifier.dart';
 
-import '../providers/image_api.dart';
+import '../providers/image_provider.dart';
 
 void uploadImage(ProfileImageNotifier profileImageNotifier) async {
   print("Image Upload : 1");

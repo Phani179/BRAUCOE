@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/providers/fee_details_api.dart';
-import 'package:untitled/screens/fee_details/fee_info.dart';
-import 'package:untitled/screens/login/student_login.dart';
-import 'package:untitled/widgets/fees_bar.dart';
-import 'package:untitled/widgets/shimmer_effect/fee_page_shimmer.dart';
+import 'package:braucoe/providers/fee_details_provider.dart';
+import 'package:braucoe/screens/fee_details/fee_info.dart';
+import 'package:braucoe/screens/login/student_login.dart';
+import 'package:braucoe/widgets/fees_bar.dart';
+import 'package:braucoe/widgets/shimmer_effect/fee_page_shimmer.dart';
 
 class FeeDetailsScreen extends StatefulWidget {
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/widgets/profile_items.dart';
-import '../../providers/login_api.dart';
+import 'package:braucoe/widgets/profile_items.dart';
+import '../../providers/login_provider.dart';
 import '../../utilities/customized_paint.dart';
 import '../../widgets/profile_image_generator.dart';
 

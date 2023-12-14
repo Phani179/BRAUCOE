@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:untitled/screens/forgot_password/reset_password_page.dart';
-import '../../providers/login_api.dart';
-import '../../providers/otp_api.dart';
+import 'package:braucoe/screens/forgot_password/reset_password_page.dart';
+import '../../providers/login_provider.dart';
+import '../../providers/otp_provider.dart';
 
 class OtpPage extends StatefulWidget {
 
   static const String routeName = '/otp-page';
 
   int reg_no;
-  int? generatedOtp;
+  int? generatedOtp = 0000;
   int? userOtp;
 
   OtpPage({required this.reg_no, super.key});
