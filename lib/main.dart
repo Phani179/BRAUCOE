@@ -1,24 +1,31 @@
 
+import 'package:flutter/material.dart';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:provider/provider.dart';
+
+import 'package:braucoe/providers/ai_chat_provider.dart';
+import 'package:braucoe/utilities/env.dart';
 import 'package:braucoe/firebase_options.dart';
 import 'package:braucoe/screens/login/handler.dart';
 import 'package:braucoe/services/route_generator.dart';
-import 'package:braucoe/utilities/profile_image_notifier.dart';
-import 'package:provider/provider.dart';
+import 'package:braucoe/providers/profile_image_notifier.dart';
+
 
 void main() async {
   RouteGenerator routeGenerator = RouteGenerator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Gemini.init(apiKey: Env.geminiAPIKey);
   runApp(
       DevicePreview(
         enabled: false,
         builder: (context) => MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (ctx) => ProfileImageNotifier()),
+            ChangeNotifierProvider(create: (ctx) => AIChatProvider()),
           ],
           child: MaterialApp(
             theme: ThemeData().copyWith(
@@ -39,3 +46,5 @@ void main() async {
       ),
   );
 }
+
+

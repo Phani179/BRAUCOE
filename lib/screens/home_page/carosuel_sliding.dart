@@ -38,10 +38,12 @@ class _CarouselSlidingState extends State<CarouselSliding>
       {
         currentPage = 0;
       }
-      pageController.animateToPage( currentPage,
-          duration: Duration(milliseconds: 400),
-          curve: Curves.easeInOut
-      );
+      if (pageController.hasClients) {
+        pageController.animateToPage( currentPage,
+            duration: Duration(milliseconds: 400),
+            curve: Curves.easeInOut
+        );
+        }
       },
     );
   }

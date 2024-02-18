@@ -7,7 +7,7 @@ class CustomizedPaint extends CustomPainter
     final height = size.height;
     final width = size.width;
     var paint = Paint();
-    paint.color = const Color(0xFFEFE1D0);     //
+    paint.color = const Color(0xFFEFE1D0);
     paint.style = PaintingStyle.fill;
     var path = Path();
     path.lineTo(0, height*0.20);

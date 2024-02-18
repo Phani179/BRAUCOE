@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:braucoe/providers/fee_details_provider.dart';
+import 'package:braucoe/data/apis/fee_details_api.dart';
 import 'package:braucoe/screens/fee_details/fee_info.dart';
 import 'package:braucoe/screens/login/student_login.dart';
 import 'package:braucoe/widgets/fees_bar.dart';

@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:braucoe/screens/home_page/home_page.dart';
-import 'package:braucoe/screens/login/screen2.dart';
 
-import '../../utilities/images.dart';
+import 'package:flutter/material.dart';
+
+import 'package:braucoe/screens/login/screen2.dart';
+import 'package:braucoe/utilities/images.dart';
+import 'package:braucoe/screens/bottom_nav_bar.dart';
 
 class LogoScreen extends StatefulWidget {
   const LogoScreen({super.key});
@@ -104,7 +105,7 @@ class _LogoScreenState extends State<LogoScreen> {
                 // padding: const EdgeInsets.fromLTRB(76, 18, 76, 17),
               ),
               onPressed: () {
-                LogoScreen.isLoggedIn! ? Navigator.pushNamed( context, HomePage.routeName) : Navigator.of(context).pushNamed(Screen2.routeName);
+                LogoScreen.isLoggedIn! ? Navigator.pushNamed( context, BottomNavBar.routeName) : Navigator.of(context).pushNamed(Screen2.routeName);
                 // Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => const Screen2()));
               },
               child: SizedBox(

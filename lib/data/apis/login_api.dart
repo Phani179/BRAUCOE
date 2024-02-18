@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:braucoe/modal_classes/student_details.dart';
-import 'package:braucoe/modal_classes/student_qualifications.dart';
-import 'package:braucoe/modal_classes/student_personal_info.dart';
+import 'package:braucoe/data/models/student_details.dart';
+import 'package:braucoe/data/models/student_qualifications.dart';
+import 'package:braucoe/data/models/student_personal_info.dart';
 
 class LoginAPI {
   static StudentDetails? studentDetails;

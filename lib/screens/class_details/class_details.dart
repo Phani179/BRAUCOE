@@ -1,10 +1,15 @@
+import 'package:braucoe/screens/class_details/chat_room.dart';
 import 'package:flutter/material.dart';
-import 'package:braucoe/modal_classes/student_card.dart';
-import 'package:braucoe/providers/class_details_provider.dart';
+
+import 'package:braucoe/data/models/student_card.dart';
+import 'package:braucoe/data/apis/class_details_api.dart';
 import 'package:braucoe/widgets/shimmer_effect/class_details_shimmer_loading.dart';
+import 'package:braucoe/utilities/images.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ClassDetailsScreen extends StatefulWidget {
   static const String routeName = '/class-details';
+
   const ClassDetailsScreen({super.key});
 
   @override
@@ -12,7 +17,16 @@ class ClassDetailsScreen extends StatefulWidget {
 }
 
 class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
-  ClassDetailsAPI classDetailsAPI = ClassDetailsAPI();
+  late ClassDetailsAPI classDetailsAPI;
+  late Future<List<StudentCard>> studentCards;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    classDetailsAPI = ClassDetailsAPI();
+    studentCards = classDetailsAPI.getAllStudents();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +34,6 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Color(0xFF382E1E),
-          ),
-        ),
         centerTitle: true,
         title: const Text(
           'Class Details',
@@ -45,7 +50,7 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
           children: [
             Expanded(
               child: FutureBuilder(
-                future: classDetailsAPI.getAllStudents(),
+                future: studentCards,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -91,25 +96,69 @@ class _ClassDetailsScreenState extends State<ClassDetailsScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        '${studentCard.getStudentName}',
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                          fontFamily: 'LibreFranklin-Regular',
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 1,
-                                      ),
-                                      Text(
-                                        'Registration no.: ${studentCard.getStudentRegNo}',
-                                        maxLines: 2,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          fontFamily: 'LibreFranklin-Regular',
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${studentCard.getStudentName}',
+                                                  style: const TextStyle(
+                                                    fontSize: 18,
+                                                    fontFamily:
+                                                        'LibreFranklin-Regular',
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                  maxLines: 2,
+                                                ),
+                                                const SizedBox(
+                                                  height: 1,
+                                                ),
+                                                Text(
+                                                  'Registration no.: ${studentCard.getStudentRegNo}',
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontFamily:
+                                                        'LibreFranklin-Regular',
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Column(
+                                            children: [
+                                              InkWell(
+                                                child: Container(
+                                                  height: 50,
+                                                  width: 50,
+                                                  padding: const EdgeInsets.all(
+                                                    13.0,
+                                                  ),
+                                                  child: SvgPicture.asset(
+                                                    Images.chatIcon,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pushNamed(context,
+                                                      ChatRoom.routeName,
+                                                      arguments: {
+                                                        'name': studentCard
+                                                            .getStudentName
+                                                            .toString(),
+                                                        'regNo': studentCard
+                                                            .getStudentRegNo
+                                                            .toString(),
+                                                      });
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                       const SizedBox(
                                         height: 1,

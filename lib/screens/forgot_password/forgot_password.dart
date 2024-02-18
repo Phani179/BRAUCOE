@@ -111,7 +111,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                                 left: 25,
                                 right: 25,
                               ),
-                              backgroundColor: Color(0XFF00512D),
+                              backgroundColor: const Color(0XFF00512D),
                             ),
                             onPressed: () {
                               print(widget.textEditingController.text);

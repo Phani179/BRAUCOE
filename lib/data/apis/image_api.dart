@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/data/apis/login_api.dart';
 
 class ImageAPI
 {

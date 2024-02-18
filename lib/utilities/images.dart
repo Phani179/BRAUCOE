@@ -23,4 +23,9 @@ final class Images
   static const String done = 'assets/images/Done.png';
   static const String resultsPageImage = 'assets/images/ResultPageImage.png';
   static const String profileImage = 'assets/images/ProfileImage.png';
+  static const String chatIcon = 'assets/images/chat.svg';
+  static const String chatRoomBackground = 'assets/images/chatRoomBG.png';
+  static const String marker = 'assets/images/marker.svg';
+  static const String gemini = 'assets/images/gemini.svg';
+  static const String geminiLogo = 'assets/images/geminiLogo.svg';
 }

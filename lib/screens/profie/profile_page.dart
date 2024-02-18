@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:braucoe/widgets/profile_items.dart';
-import '../../providers/login_provider.dart';
+import '../../data/apis/login_api.dart';
 import '../../utilities/customized_paint.dart';
 import '../../widgets/profile_image_generator.dart';
 
@@ -30,7 +30,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                     height: height * 0.015,
                   ),
                   GestureDetector(
-                    child: Icon(Icons.arrow_back, size: 23,),
+                    child: const Icon(Icons.arrow_back, size: 23,),
                     onTap: (){
                       Navigator.pop(context);
                     },

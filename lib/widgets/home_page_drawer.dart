@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:braucoe/main.dart';
 import 'package:braucoe/screens/login/handler.dart';
 import 'package:braucoe/screens/login/logo_screen.dart';
 import 'package:braucoe/screens/profie/profile_page.dart';
 import 'package:braucoe/widgets/profile_image_generator.dart';
-import '../providers/login_provider.dart';
+import '../data/apis/login_api.dart';
 import '../screens/help/help.dart';
 import '../screens/login/student_login.dart';
 
@@ -28,13 +27,13 @@ class HomePageDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Drawer(
       child: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            height: height * 0.95,
-            margin: EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+            height: height * 0.85,
+            margin: EdgeInsets.only(left: width * 0.04, right: width * 0.04),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -171,7 +170,7 @@ class HomePageDrawer extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size(width * 0.15, height * 0.05),
+                      fixedSize: Size(width * 0.35, height * 0.05),
                       elevation: 10,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),

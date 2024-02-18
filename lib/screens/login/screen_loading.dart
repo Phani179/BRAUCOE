@@ -1,11 +1,13 @@
+
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:braucoe/providers/login_provider.dart';
-import 'package:braucoe/providers/renew_password_provider.dart';
-import 'package:braucoe/screens/home_page/home_page.dart';
+import 'package:braucoe/data/apis/login_api.dart';
+import 'package:braucoe/data/apis/renew_password_api.dart';
 import 'package:braucoe/screens/login/student_login.dart';
 import 'package:braucoe/utilities/images.dart';
-import '../../widgets/shimmer_effect/login_shimmer.dart';
+import 'package:braucoe/widgets/shimmer_effect/login_shimmer.dart';
+import 'package:braucoe/screens/bottom_nav_bar.dart';
 
 class ScreenLoading extends StatefulWidget {
   const ScreenLoading(
@@ -75,7 +77,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
           return isSuccess
               ? AlertDialog(
                   content: Container(
-                    height: 140,
+                    height: 150,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -114,13 +116,14 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                         ),
                         const Text(
                           "Congratulations, you can enjoy the services now!",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: "LibreFranklin-Regular",
                               fontWeight: FontWeight.w400,
                               color: Color(0xFF382E1E)),
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),
@@ -134,7 +137,7 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                           print("Login Status $loginStatus");
                           prefs.setBool(StudentLogin.isLoggedIn, loginStatus);
                           prefs.setInt(StudentLogin.studentId, studentId!);
-                          Navigator.pushNamed(context, HomePage.routeName);
+                          Navigator.pushNamed(context, BottomNavBar.routeName);
                           // Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                         },
                         style: ElevatedButton.styleFrom(

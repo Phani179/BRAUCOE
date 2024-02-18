@@ -1,19 +1,17 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:braucoe/widgets/subject_check_box.dart';
 import 'package:braucoe/services/firebase_storage_services.dart';
-import 'package:braucoe/utilities/images.dart';
-import 'package:braucoe/utilities/local_file_saver.dart';
+import 'package:braucoe/utilities/file_handling.dart';
 import 'package:braucoe/utilities/semester.dart';
 
 class SubjectSelectionScreen extends StatefulWidget {
-  SubjectSelectionScreen(
-      {
-        required this.titleText,
-        required this.selectedYear,
-      required this.firebaseStoragePath,
-      super.key});
+  SubjectSelectionScreen({
+    required this.titleText,
+    required this.selectedYear,
+    required this.firebaseStoragePath,
+    super.key,
+  });
 
   String titleText;
   String selectedYear;
@@ -33,31 +31,31 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('File(s) downloaded'),
-        action: SnackBarAction(label: 'OK', onPressed: (){
-          ScaffoldMessenger.of(context).clearSnackBars();
-        }),
-        duration: Duration(milliseconds: 2000),
+        action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {
+              ScaffoldMessenger.of(context).clearSnackBars();
+            }),
+        duration: const Duration(milliseconds: 2000),
       ),
     );
   }
 
-  void _downloadFiles() async
-  {
-    var updatedList = semesterSyllabus.semesters[widget.selectedYear]
-        ?.where((subject) {
+  void _downloadFiles() async {
+    var updatedList =
+        semesterSyllabus.semesters[widget.selectedYear]?.where((subject) {
       return subject['isChecked'] as bool == true;
     }).toList();
-    if(updatedList!.isEmpty)
-    {
+    if (updatedList!.isEmpty) {
       setState(() {
         isValid = false;
       });
       return;
     }
-    for (var subject in updatedList!) {
+    for (var subject in updatedList) {
       String tempPath =
           '${widget.firebaseStoragePath}/${subject['subject']}.pdf';
-      await LocalFileSaver.saveFile(
+      await FileHandling.saveFile(
           FirebaseStorageServices(firebaseStoragePath: tempPath)
               .getFirebaseSyllabusRef,
           subject['subject'].toString());
@@ -68,7 +66,7 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -102,7 +100,7 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children:
-                      semesterSyllabus.semesters['${widget.selectedYear}']!
+                      semesterSyllabus.semesters[widget.selectedYear]!
                           .map(
                             (subject) => SubjectCheckBox(subject: subject),
                           )

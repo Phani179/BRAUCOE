@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:braucoe/modal_classes/result_info.dart';
+import 'package:braucoe/data/models/result_info.dart';
 
 void main()
 {

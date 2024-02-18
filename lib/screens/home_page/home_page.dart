@@ -1,19 +1,21 @@
+
 import 'dart:convert';
-import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:provider/provider.dart';
 import 'package:braucoe/screens/class_details/class_details.dart';
 import 'package:braucoe/screens/fee_details/fee_details.dart';
-import 'package:braucoe/screens/previous_papers/previous_papers_page.dart';
 import 'package:braucoe/screens/syllabus/syllabus_page.dart';
 import 'package:braucoe/utilities/customized_paint.dart';
-import 'package:braucoe/utilities/home_page_item.dart';
-import 'package:braucoe/utilities/profile_image_notifier.dart';
+import 'package:braucoe/widgets/home_page_item.dart';
+import 'package:braucoe/providers/profile_image_notifier.dart';
 import 'package:braucoe/widgets/home_page_drawer.dart';
-import 'package:braucoe/providers/login_provider.dart';
+import 'package:braucoe/data/apis/login_api.dart';
 import 'package:braucoe/utilities/images.dart';
-import '../results/result_home_screen.dart';
+import 'package:braucoe/screens/previous_papers/previous_papers_page.dart';
+import 'package:braucoe/screens/results/result_home_screen.dart';
 import 'carosuel_sliding.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,6 +28,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
 
   @override
@@ -146,9 +149,8 @@ class _HomePage extends State<HomePage> {
               height: 150,
               child: CarouselSliding(),
             ),
-            SizedBox(
-              height: height * 0.585,
-              child: const SingleChildScrollView(
+            const Expanded(
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     // Class Details
@@ -168,12 +170,12 @@ class _HomePage extends State<HomePage> {
                     ),
 
                     // Syllabus
-                    // HomePageItem(
-                    //   title: 'Syllabus',
-                    //   image: Images.syllabus,
-                    //   leftPadding: 42.0,
-                    //   nextPage: SyllabusPage(),
-                    // ),
+                    HomePageItem(
+                      title: 'Syllabus',
+                      image: Images.syllabus,
+                      leftPadding: 42.0,
+                      nextPage: SyllabusPage(),
+                    ),
 
                     // Previous Papers
                     HomePageItem(
@@ -184,69 +186,24 @@ class _HomePage extends State<HomePage> {
                     ),
 
                     // Fees
-                    // HomePageItem(
-                    //   title: 'Fee Details',
-                    //   image: Images.fees,
-                    //   leftPadding: 34.0,
-                    //   nextPage: FeeDetailsScreen(),
-                    // ),
+                    HomePageItem(
+                      title: 'Fee Details',
+                      image: Images.fees,
+                      leftPadding: 34.0,
+                      nextPage: FeeDetailsScreen(),
+                    ),
 
                     // Library
                     // HomePageItem(
                     //     title: 'Library',
                     //     image: Images.library,
                     //     leftPadding: 30.0,
-                    //     nextPage: null),
+                    //     nextPage: null,
+                    //     ),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: const SizedBox(
-        height: 60,
-        child: GNav(
-          backgroundColor: Colors.white,
-          activeColor: Color(0xff00512D),
-          // Colors.green.shade900,
-          tabBackgroundColor: Color(0xFF9DCCB7),
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          gap: 8,
-          padding: EdgeInsets.symmetric(horizontal: 13, vertical: 8),
-          tabs: [
-            GButton(
-              icon: Icons.home,
-              iconColor: Color(0xFF382E1E),
-              iconSize: 25,
-              text: 'Home',
-              textStyle: TextStyle(
-                  fontFamily: "LibreFranklin-Medium", color: Color(0xFF00512D)),
-              textSize: 25,
-              onPressed: null,
-            ),
-            // GButton(
-            //   icon: Icons.search,
-            //   iconColor: Color(0xFF382E1E),
-            //   iconSize: 25,
-            //   text: 'Search',
-            //   textStyle: TextStyle(
-            //       fontFamily: "LibreFranklin-Medium",
-            //       color: Color(0xFF00512D)),
-            //   textSize: 25,
-            //   onPressed: null,
-            // ),
-            // GButton(
-            //   icon: Icons.settings,
-            //   iconColor: Color(0xFF382E1E),
-            //   iconSize: 25,
-            //   text: 'Settings',
-            //   textStyle: TextStyle(
-            //       fontFamily: "LibreFranklin-Medium",
-            //       color: Color(0xFF00512D)),
-            //   textSize: 25,
-            //   onPressed: null,
-            // ),
           ],
         ),
       ),

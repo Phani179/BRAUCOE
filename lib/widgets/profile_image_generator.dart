@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:provider/provider.dart';
-import 'package:braucoe/utilities/profile_image_notifier.dart';
+import 'package:braucoe/providers/profile_image_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:braucoe/widgets/profile_image_item.dart';
 
-import '../providers/login_provider.dart';
+import '../data/apis/login_api.dart';
 
 class ProfileImageGenerator extends StatelessWidget {
   ProfileImageGenerator({required this.radius, super.key});

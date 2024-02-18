@@ -6,9 +6,8 @@ import 'package:screenshot/screenshot.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
-import 'package:braucoe/providers/login_provider.dart';
-import 'package:braucoe/providers/result_provider.dart';
-import 'result_home_screen.dart';
+import 'package:braucoe/data/apis/login_api.dart';
+import 'package:braucoe/data/apis/result_api.dart';
 
 class ResultTable extends StatefulWidget {
 

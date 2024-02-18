@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:braucoe/screens/forgot_password/reset_password_page.dart';
-import '../../providers/login_provider.dart';
-import '../../providers/otp_provider.dart';
+import '../../data/apis/login_api.dart';
+import '../../data/apis/otp_api.dart';
 
 class OtpPage extends StatefulWidget {
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:braucoe/screens/bottom_nav_bar.dart';
+import 'package:braucoe/screens/class_details/chat_room.dart';
 import 'package:braucoe/screens/class_details/class_details.dart';
 import 'package:braucoe/screens/forgot_password/forgot_password.dart';
 import 'package:braucoe/screens/forgot_password/otp_page.dart';
@@ -8,14 +11,18 @@ import 'package:braucoe/screens/home_page/home_page.dart';
 import 'package:braucoe/screens/login/screen2.dart';
 import 'package:braucoe/screens/login/student_login.dart';
 import 'package:braucoe/screens/results/result_home_screen.dart';
-import '../screens/login/handler.dart';
-
+import 'package:braucoe/screens/login/handler.dart';
 
 class RouteGenerator {
   Route? generateRoute(RouteSettings settings) {
     final args = settings.arguments;
     print(settings.name);
     switch (settings.name) {
+      case BottomNavBar.routeName:
+        return MaterialPageRoute(
+          settings: const RouteSettings(name: Handler.routeName),
+          builder: (ctx) => const BottomNavBar(),
+        );
       case Handler.routeName:
         return MaterialPageRoute(
           settings: const RouteSettings(name: Handler.routeName),
@@ -65,6 +72,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           settings: const RouteSettings(name: ResultHomeScreen.routeName),
           builder: (ctx) => const ResultHomeScreen(),
+        );
+      case ChatRoom.routeName:
+        return MaterialPageRoute(
+          settings: const RouteSettings(name: ChatRoom.routeName),
+          builder: (ctx) => ChatRoom(name: (args as Map)['name'], regNo: args['regNo'],),
         );
       default:
         return null;

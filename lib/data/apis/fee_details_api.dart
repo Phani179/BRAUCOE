@@ -1,13 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:braucoe/modal_classes/fee_details.dart';
-
-void main()
-{
-  FeeDetailsAPI feeDetailsAPI = FeeDetailsAPI();
-  feeDetailsAPI.getFeeDetails(2081951044);
-}
+import 'package:braucoe/data/models/fee_details.dart';
 
 class FeeDetailsAPI
 {

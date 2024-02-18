@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utilities/profile_image_notifier.dart';
+import '../providers/profile_image_notifier.dart';
 import '../utilities/upload_image_to_db.dart';
 
 class ProfileImageItem extends StatelessWidget {

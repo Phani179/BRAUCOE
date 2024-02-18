@@ -1,6 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:braucoe/providers/renew_password_provider.dart';
+
+import 'package:braucoe/data/apis/renew_password_api.dart';
 import 'package:braucoe/screens/login/password_textfield.dart';
 import 'package:braucoe/screens/login/student_login.dart';
 import 'package:braucoe/utilities/images.dart';
@@ -21,7 +21,7 @@ class _ResetPassword extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    // var height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(

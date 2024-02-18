@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:braucoe/screens/results/result_table.dart';
 import 'package:braucoe/widgets/shimmer_effect/result_page_loding.dart';
-import '../../providers/result_provider.dart';
+import '../../data/apis/result_api.dart';
 
 class ResultPageHandler extends StatefulWidget {
   String? semester;

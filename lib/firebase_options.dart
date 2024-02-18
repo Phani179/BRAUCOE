@@ -65,12 +65,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBBLiC2i--XfdfFB3bqNf40dR3N1QxuDK8',
-    appId: '1:1043534730937:ios:4145f5ea91ea8b70272d68',
+    appId: '1:1043534730937:ios:2a04528fc69e4338272d68',
     messagingSenderId: '1043534730937',
     projectId: 'braucoe-33c92',
     databaseURL: 'https://braucoe-33c92-default-rtdb.firebaseio.com',
     storageBucket: 'braucoe-33c92.appspot.com',
-    iosBundleId: 'com.example.restapiusage',
+    iosBundleId: 'com.example.braucoe',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
