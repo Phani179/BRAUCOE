@@ -8,10 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 class FileHandling {
   static Future<void> saveFile(
-      Reference firebaseSyllabusRef, String subjectName) async {
-    final filePath = (await getApplicationDocumentsDirectory()).path;
-    File localFile = File('$filePath/${subjectName}_syllabus.pdf');
-    await firebaseSyllabusRef.writeToFile(localFile);
+      File localFile, String subjectName) async {
     await FileSaver.instance.saveAs(
       file: localFile,
       name: '${subjectName}_syllabus',

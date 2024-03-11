@@ -46,7 +46,7 @@ class Screen2 extends StatelessWidget {
               height: 10,
             ),
             Container(
-              margin: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: [
                   const Text(
@@ -90,21 +90,33 @@ class Screen2 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            height: 70,
-                            width: 70,
-                            child: Image.asset(Images.nAACB)),
+                          height: 70,
+                          width: 70,
+                          child: Image.asset(
+                            Images.nAACB,
+                          ),
+                        ),
                         SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Image.asset(Images.iSO)),
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(
+                            Images.iSO,
+                          ),
+                        ),
                         SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Image.asset(Images.sraddavanLogo)),
+                          height: 50,
+                          width: 50,
+                          child: Image.asset(
+                            Images.sraddavanLogo,
+                          ),
+                        ),
                         SizedBox(
-                            height: 100,
-                            width: 100,
-                            child: Image.asset(Images.swachBharat)),
+                          height: 100,
+                          width: 100,
+                          child: Image.asset(
+                            Images.swachBharat,
+                          ),
+                        ),
                       ],
                     ),
                   ),

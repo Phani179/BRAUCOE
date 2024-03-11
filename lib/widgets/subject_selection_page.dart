@@ -1,9 +1,15 @@
+import 'dart:io';
+
+import 'package:braucoe/widgets/pdf_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:braucoe/widgets/subject_check_box.dart';
 import 'package:braucoe/services/firebase_storage_services.dart';
 import 'package:braucoe/utilities/file_handling.dart';
 import 'package:braucoe/utilities/semester.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SubjectSelectionScreen extends StatefulWidget {
   SubjectSelectionScreen({
@@ -55,10 +61,13 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
     for (var subject in updatedList) {
       String tempPath =
           '${widget.firebaseStoragePath}/${subject['subject']}.pdf';
-      await FileHandling.saveFile(
-          FirebaseStorageServices(firebaseStoragePath: tempPath)
-              .getFirebaseSyllabusRef,
-          subject['subject'].toString());
+      final filePath = (await getApplicationDocumentsDirectory()).path;
+      File localFile =
+          File('$filePath/${subject['subject'].toString()}_syllabus.pdf');
+      await FirebaseStorageServices(firebaseStoragePath: tempPath)
+          .getFirebaseSyllabusRef
+          .writeToFile(localFile);
+      await FileHandling.saveFile(localFile, subject['subject'].toString());
     }
     _showSnackBar();
   }
@@ -67,44 +76,79 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     // final width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back_sharp),
-            ),
             SizedBox(
               height: height * 0.01,
             ),
             Container(
               margin: const EdgeInsets.all(16),
               child: Text(
-                'Select the subjects below to download ${widget.titleText.replaceAll('_', ' ')}',
+                'Tap the subject below to view and Select the subjects below to download ${widget.titleText.replaceAll('_', ' ')}',
                 style: const TextStyle(
                   fontSize: 23,
                   fontWeight: FontWeight.w600,
                 ),
-                maxLines: 2,
+                // maxLines: 2,
               ),
             ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            SizedBox(
+            Container(
               height: height * 0.58,
+              margin: const EdgeInsets.only(left: 30),
+              color: Colors.white,
               child: SingleChildScrollView(
                 child: Column(
-                  children:
-                      semesterSyllabus.semesters[widget.selectedYear]!
-                          .map(
-                            (subject) => SubjectCheckBox(subject: subject),
-                          )
-                          .toList(),
+                  children: semesterSyllabus.semesters[widget.selectedYear]!
+                      .map(
+                        (subject) => Row(
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                String tempPath =
+                                    '${widget.firebaseStoragePath}/${subject['subject']}.pdf';
+                                final filePath =
+                                    (await getApplicationDocumentsDirectory())
+                                        .path;
+                                File localFile = File(
+                                    '$filePath/${subject['subject'].toString()}_syllabus.pdf');
+                                await FirebaseStorageServices(
+                                        firebaseStoragePath: tempPath)
+                                    .getFirebaseSyllabusRef
+                                    .writeToFile(localFile);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (ctx) => PdfView(
+                                      subjectName: subject['subject'].toString(),
+                                      file: localFile,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                subject['subject'].toString(),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                maxLines: 3,
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Expanded(
+                              child: SubjectCheckBox(
+                                subject: subject,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
@@ -121,16 +165,16 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
               ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          tooltip: 'download',
-          backgroundColor: const Color(0xFF00512D),
-          elevation: 8,
-          onPressed: _downloadFiles,
-          child: const Icon(
-            Icons.file_download_outlined,
-            color: Colors.white,
-            size: 35,
-          ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'download',
+        backgroundColor: const Color(0xFF00512D),
+        elevation: 8,
+        onPressed: _downloadFiles,
+        child: const Icon(
+          Icons.file_download_outlined,
+          color: Colors.white,
+          size: 35,
         ),
       ),
     );

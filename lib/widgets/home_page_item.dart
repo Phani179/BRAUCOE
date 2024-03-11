@@ -1,5 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePageItem extends StatelessWidget {
   const HomePageItem(
@@ -17,7 +17,7 @@ class HomePageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       child: Container(
           height: height * 0.12,

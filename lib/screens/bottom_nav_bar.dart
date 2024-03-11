@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -8,6 +9,10 @@ import 'package:braucoe/screens/ai_chat/ai_chat_page.dart';
 import 'package:braucoe/utilities/custom_icons.dart';
 import 'package:braucoe/screens/home_page/home_page.dart';
 import 'package:braucoe/screens/map/map_page.dart';
+import 'package:provider/provider.dart';
+
+import 'package:braucoe/providers/ai_chat_provider.dart';
+import 'package:braucoe/providers/profile_image_notifier.dart';
 
 class BottomNavBar extends StatefulWidget {
   static const String routeName = '/bottom-nav-bar';
@@ -20,6 +25,30 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (context.mounted) {
+      Provider.of<AIChatProvider>(context, listen: false).initializeChat();
+      final gemini = Gemini.instance;
+
+      gemini
+          .chat(
+        Provider.of<AIChatProvider>(context, listen: false).chat,
+        generationConfig: GenerationConfig(
+          temperature: 1.0,
+        ),
+      )
+          .then((value) {
+        Provider.of<AIChatProvider>(context, listen: false)
+            .addMessage(value!.content!);
+      });
+      Provider.of<ProfileImageNotifier>(context, listen: false).imageFile =
+          null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

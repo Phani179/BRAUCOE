@@ -15,6 +15,19 @@ class AIChatProvider extends ChangeNotifier
     ),
   ];
 
+  void initializeChat()
+  {
+    chat = [
+      Content(
+        parts: [
+          Parts(text: 'Hi, I am ${LoginAPI.studentDetails!.student_name}'),
+        ],
+        role: 'user',
+      ),
+    ];
+    // notifyListeners();
+  }
+
   void addMessage(Content content)
   {
     chat.add(content);

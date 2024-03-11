@@ -1,10 +1,13 @@
 
 import "package:flutter/material.dart";
 
-import 'package:braucoe/utilities/firebase_functions.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:provider/provider.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:braucoe/providers/profile_image_notifier.dart';
+import 'package:braucoe/utilities/firebase_functions.dart';
 import 'package:braucoe/data/apis/login_api.dart';
 import 'package:braucoe/widgets/shimmer_effect/home_page_shimmer_loading.dart';
 import 'package:braucoe/screens/login/student_login.dart';
@@ -21,8 +24,17 @@ class Handler extends StatefulWidget {
 }
 
 class _Handler extends State<Handler> {
+
   late SharedPreferences prefs;
   bool? isLoggedIn = false;
+  late Future<bool> toGo;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    toGo = whereToGo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +43,11 @@ class _Handler extends State<Handler> {
       resizeToAvoidBottomInset: false,
       // body: HomePage()
       body: FutureBuilder(
-          future: whereToGo(),
+          future: toGo,
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting)
-              {
-                return const HomePageShimmerLoading();
-              }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const HomePageShimmerLoading();
+            }
             if (snapshot.hasData) {
               if (isLoggedIn != null) {
                 if (isLoggedIn == true) {
@@ -46,18 +57,20 @@ class _Handler extends State<Handler> {
                     future: loginAPI.getStudent(studentId),
                     builder: (BuildContext context,
                         AsyncSnapshot<dynamic> snapshot) {
-                      if (snapshot.hasData) {
-                        print(kCurrentLocation!.toString());
-                        List<String> separated = kCurrentLocation!.toString().split(',');
-                        print(separated.first.split(':').last);
-                        print(separated.last.split(':').last.split(')').first);
-                        FirebaseFunctions.saveToFirestore(location : kCurrentLocation!, registrationId : LoginAPI.studentDetails!.studentId as int);
-                        LogoScreen.isLoggedIn = true;
-                        return const LogoScreen();
-                      } else if (snapshot.connectionState ==
-                          ConnectionState.waiting) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
                         // Home Page Rendering.
                         return const HomePageShimmerLoading();
+                      }
+                      if (snapshot.hasData) {
+                        Provider.of<ProfileImageNotifier>(context,
+                                listen: false)
+                            .setImage(LoginAPI.personalInfo!.passportSizePhoto);
+                        FirebaseFunctions.saveToFirestore(
+                            location: kCurrentLocation!,
+                            registrationId:
+                                LoginAPI.studentDetails!.studentId as int);
+                        LogoScreen.isLoggedIn = true;
+                        return const LogoScreen();
                       } else {
                         return const HomePageShimmerLoading();
                       }
@@ -77,11 +90,10 @@ class _Handler extends State<Handler> {
     );
   }
 
-
-  Future whereToGo() async {
+  Future<bool> whereToGo() async {
     _enableLocationServices();
     LocationData locationData = await FirebaseFunctions.getCurrentLocation();
-    kCurrentLocation = LatLng( locationData.latitude!, locationData.longitude!);
+    kCurrentLocation = LatLng(locationData.latitude!, locationData.longitude!);
     prefs = await SharedPreferences.getInstance();
     isLoggedIn = prefs.getBool(StudentLogin.isLoggedIn);
     Handler.loginStatus = isLoggedIn ?? false;

@@ -26,7 +26,7 @@ class _SubjectCheckBoxState extends State<SubjectCheckBox> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: widget.subject['isChecked'] as bool ? Color(0xFFC5DAD1) : Colors.white,
+        // color: widget.subject['isChecked'] as bool ? Color(0xFFC5DAD1) : Colors.white,
       ),
       child: CheckboxListTile(
         side: const BorderSide(
@@ -42,15 +42,6 @@ class _SubjectCheckBoxState extends State<SubjectCheckBox> {
         activeColor: Color(0xFF00512D),
         value: widget.subject['isChecked'] as bool,
         onChanged: _isCheckedSyllabus,
-        title: Text(widget.subject['subject'].toString(),
-            style : const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          maxLines: 3,
-          softWrap: true,
-          overflow: TextOverflow.ellipsis,
-        ),
       ),
     );
   }

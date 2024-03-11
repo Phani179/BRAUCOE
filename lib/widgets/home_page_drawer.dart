@@ -14,7 +14,6 @@ class HomePageDrawer extends StatelessWidget {
   GlobalKey<ScaffoldState> scaffoldState;
 
   void _goToLoginPage(context) {
-    print(' LOGIN STATUS DATA :- ${Handler.loginStatus}');
     Handler.loginStatus! ? Navigator.pushReplacementNamed(context, StudentLogin.routeName) : Navigator.popUntil(context, (route) => route.settings.name == StudentLogin.routeName);
   }
 

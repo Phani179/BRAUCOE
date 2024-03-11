@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:braucoe/widgets/subject_selection_page.dart';
 
-import '../Screens/results/result_page_handler.dart';
-import '../screens/login/student_login.dart';
+import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:braucoe/widgets/subject_selection_page.dart';
+import 'package:braucoe/Screens/results/result_page_handler.dart';
+import 'package:braucoe/screens/login/student_login.dart';
 
 class DropDownValidator extends StatefulWidget {
   DropDownValidator(

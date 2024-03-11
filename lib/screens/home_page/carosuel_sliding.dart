@@ -1,123 +1,69 @@
-import 'dart:async';
-
+// import 'dart:async';
+//
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class CarouselSliding extends StatefulWidget {
-  const CarouselSliding({Key? key}) : super(key: key);
+class CarouselSliderWidget extends StatefulWidget {
+  const CarouselSliderWidget({super.key});
 
   @override
-  State<CarouselSliding> createState() => _CarouselSlidingState();
+  State<CarouselSliderWidget> createState() => _CarouselSliderWidgetState();
 }
 
-class _CarouselSlidingState extends State<CarouselSliding>
-{
-  late Timer timer;
-  PageController pageController = PageController();
-  
-  List notification = ["B.Tech 2-1 Semester Revaluation Results Jan 2023 - Released.",
+class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
+  List notification = [
+    "B.Tech 2-1 Semester Revaluation Results Jan 2023 - Released.",
     "B.Tech 1-1 Semester Regular /Supply Results Feb 2023 - Released.",
-    "App Update available ( Install new version from Play Store )"];
-  
-  late int currentPage = 0;
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    pageController.dispose();
-    super.dispose();
-  }
-  @override
-  void initState() {
-    super.initState();
-    timer = Timer.periodic(Duration(seconds: 2),
-          (timer) {
-      if(currentPage < 2)
-      {
-        currentPage++;
-      }
-      else
-      {
-        currentPage = 0;
-      }
-      if (pageController.hasClients) {
-        pageController.animateToPage( currentPage,
-            duration: Duration(milliseconds: 400),
-            curve: Curves.easeInOut
-        );
-        }
-      },
-    );
-  }
-  
+    "App Update available ( Install new version from Play Store )"
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Container(
-              height: 110,
-              decoration: BoxDecoration(
-                color: Color(0xFFEFE1D0),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Stack(
+    return CarouselSlider(
+      items: [
+        for (final item in notification)
+          Container(
+            height: 110,
+            margin: EdgeInsets.all(5),
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Color(0xFFEFE1D0),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: GestureDetector(
+              onTap: null, // Link to that Pages.
+              child: Row(
                 children: [
-                  PageView.builder(
-                  controller: pageController,
-                  onPageChanged: (index) {
-                    setState(() {
-                      currentPage = index % notification.length;
-                    });
-                  },
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                          onTap: null,    // Link to that Pages.
-                            child: Stack(
-                              children : [
-                                Positioned(
-                                  top : 30,
-                                    left: 28,
-                                    child: Image.asset("assets/images/Screen6Notif.png"),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(61, 30, 30, 0),
-                                  child: Text(
-                                    notification[index % notification.length],
-                                    style: TextStyle(fontFamily: "LibreFranklin-Medium", fontSize: 15, fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ],
-                            ),
-                    );
-                  },
-                ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for(int i = 0; i < notification.length; i++)
-                        indicator(currentPage == i),
-                    ],
+                  const SizedBox(
+                    width: 10,
                   ),
-              ],
+                  Image.asset("assets/images/Screen6Notif.png"),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Text(
+                      item,
+                      style: const TextStyle(
+                        fontFamily: "LibreFranklin-Medium",
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      );
-  }
-
-  Widget indicator(bool matched)
-  {
-    return Padding(
-      padding: const EdgeInsets.only(left: 5, top: 90),
-      child: Container(
-        height: matched ? 8 : 6,
-        width: matched ? 8 : 6,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: matched ? Color(0xFF382E1E) : Color(0x80382E1E),
-        ),
+      ],
+      options: CarouselOptions(
+        viewportFraction: 1,
+        autoPlay: true,
       ),
     );
   }
 }
+

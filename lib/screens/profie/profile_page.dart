@@ -79,7 +79,7 @@ class _ProfilePageScreenState extends State<ProfilePageScreen> {
                         Center(
                           child: SizedBox(
                               width : width * 0.7,
-                            child: Divider(thickness: 2,)),
+                            child: const Divider(thickness: 2,)),
                         ),
 
                         // Personal Details

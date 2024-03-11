@@ -76,7 +76,10 @@ class RouteGenerator {
       case ChatRoom.routeName:
         return MaterialPageRoute(
           settings: const RouteSettings(name: ChatRoom.routeName),
-          builder: (ctx) => ChatRoom(name: (args as Map)['name'], regNo: args['regNo'],),
+          builder: (ctx) => ChatRoom(
+            name: (args as Map)['name'],
+            regNo: args['regNo'],
+          ),
         );
       default:
         return null;

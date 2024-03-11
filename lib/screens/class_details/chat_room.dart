@@ -1,7 +1,9 @@
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+
+import 'package:braucoe/providers/chat_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:braucoe/utilities/file_handling.dart';
 import 'package:flutter/foundation.dart' as foundation;
@@ -12,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:braucoe/utilities/images.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../utilities/encrypt_data.dart';
 
@@ -33,7 +36,6 @@ class _ChatRoomState extends State<ChatRoom> {
   late TextEditingController _textEditingController;
   final ScrollController _scrollController = ScrollController();
   List<int> students = [];
-  bool _textType = false;
 
   @override
   void initState() {
@@ -116,10 +118,10 @@ class _ChatRoomState extends State<ChatRoom> {
     } else {
       for (File file in pickedFiles!) {
         _saveMessage(message, file);
-        setState(() {
-          pickedFiles = [];
-        });
       }
+      setState(() {
+        pickedFiles = [];
+      });
     }
   }
 
@@ -450,60 +452,60 @@ class _ChatRoomState extends State<ChatRoom> {
                     const Spacer(),
                     SizedBox(
                       width: width * 0.8,
-                      child: TextField(
-                        controller: _textEditingController,
-                        keyboardType: TextInputType.multiline,
-                        readOnly:
-                            pickedFiles != null && pickedFiles!.isNotEmpty,
-                        maxLines: null,
-                        autocorrect: true,
-                        onChanged: (value) {
-                          if (value.isNotEmpty) {
-                            setState(() {
-                              _textType = true;
-                            });
-                          } else {
-                            setState(() {
-                              _textType = false;
-                            });
-                          }
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'Message',
-                          hintStyle: const TextStyle(
-                            fontSize: 15,
-                            color: Color(0xFF657782),
-                            fontFamily: 'LibreFranklin-Regular',
-                          ),
-                          prefixIcon: IconButton(
-                            icon: const Icon(
-                              Icons.emoji_emotions_outlined,
-                              size: 25,
-                            ),
-                            color: const Color(
-                              0xFF657782,
-                            ),
-                            onPressed: _openEmojiPicker,
-                          ),
-                          suffixIcon: _textType
-                              ? null
-                              : InkWell(
-                                  onTap: _pickFile,
-                                  child: const Icon(
-                                    Icons.file_present,
-                                    size: 25,
-                                    color: Color(
-                                      0xFF657782,
-                                    ),
-                                  ),
+                      child: Consumer<ChatProvider>(
+                        builder: (context, chatProvider, child) {
+                          return TextField(
+                            controller: _textEditingController,
+                            keyboardType: TextInputType.multiline,
+                            readOnly:
+                                pickedFiles != null && pickedFiles!.isNotEmpty,
+                            maxLines: null,
+                            autocorrect: true,
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                chatProvider.changeTextTypeState(true);
+                              } else {
+                                chatProvider.changeTextTypeState(false);
+                              }
+                            },
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              hintText: 'Message',
+                              hintStyle: const TextStyle(
+                                fontSize: 15,
+                                color: Color(0xFF657782),
+                                fontFamily: 'LibreFranklin-Regular',
+                              ),
+                              prefixIcon: IconButton(
+                                icon: const Icon(
+                                  Icons.emoji_emotions_outlined,
+                                  size: 25,
                                 ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
+                                color: const Color(
+                                  0xFF657782,
+                                ),
+                                onPressed: _openEmojiPicker,
+                              ),
+                              suffixIcon: chatProvider.isTextType
+                                  ? null
+                                  : InkWell(
+                                      onTap: _pickFile,
+                                      child: const Icon(
+                                        Icons.file_present,
+                                        size: 25,
+                                        color: Color(
+                                          0xFF657782,
+                                        ),
+                                      ),
+                                    ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          );
+                        }
                       ),
                     ),
                     const SizedBox(

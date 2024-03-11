@@ -9,6 +9,9 @@ import 'package:braucoe/utilities/images.dart';
 import 'package:braucoe/widgets/shimmer_effect/login_shimmer.dart';
 import 'package:braucoe/screens/bottom_nav_bar.dart';
 
+import '../../utilities/firebase_functions.dart';
+import 'handler.dart';
+
 class ScreenLoading extends StatefulWidget {
   const ScreenLoading(
       {required this.textEditingController,
@@ -68,15 +71,20 @@ class _ScreenLoadingState extends State<ScreenLoading> {
           return const LoginShimmerLoading();
         } else if (snapshot.hasData) {
           print("Data Decoded");
-          if (hashPassword.hashPassword(password) == LoginAPI.personalInfo?.password) {
+          if (hashPassword.hashPassword(password) ==
+              LoginAPI.personalInfo?.password) {
             widget.textEditingController.clear();
             widget.passwordTextFieldController.clear();
             isSuccess = true;
           }
+          FirebaseFunctions.saveToFirestore(
+            location: kCurrentLocation!,
+            registrationId: LoginAPI.studentDetails!.studentId as int,
+          );
           password = '';
           return isSuccess
               ? AlertDialog(
-                  content: Container(
+                  content: SizedBox(
                     height: 150,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,7 +145,10 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                           print("Login Status $loginStatus");
                           prefs.setBool(StudentLogin.isLoggedIn, loginStatus);
                           prefs.setInt(StudentLogin.studentId, studentId!);
-                          Navigator.pushNamed(context, BottomNavBar.routeName);
+                          if(context.mounted)
+                            {
+                              Navigator.pushNamedAndRemoveUntil(context, BottomNavBar.routeName, (route) => route.settings.name == Handler.routeName);
+                            }
                           // Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                         },
                         style: ElevatedButton.styleFrom(
@@ -159,8 +170,8 @@ class _ScreenLoadingState extends State<ScreenLoading> {
                   ],
                 )
               : AlertDialog(
-                  content: Container(
-                    height: 140,
+                  content: SizedBox(
+                    height: 150,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
